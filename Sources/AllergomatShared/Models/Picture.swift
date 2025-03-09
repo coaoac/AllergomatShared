@@ -26,7 +26,7 @@ public struct Picture: Codable {
         case base64
     }
 
-    init(user: User.ID?, product: Product.ID, data: Data, dataType: DataType, dataEncoding: DataEncoding, updated: Date) {
+    public init(user: User.ID?, product: Product.ID, data: Data, dataType: DataType, dataEncoding: DataEncoding, updated: Date) {
         self.data = data
         self.updated = updated
         self.user = user
@@ -38,5 +38,8 @@ public struct Picture: Codable {
 
     public struct PictureID: Codable {
         public let _id: ID
+        public init(from _id: ID) {
+            self._id = _id
+        }
     }
 }
