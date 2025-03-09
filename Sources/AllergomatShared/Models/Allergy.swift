@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Allergy: Codable, Hashable, Sendable {
+public struct Allergy: Codable, Hashable, Sendable, Identifiable {
     public static let _cname = "Allergies"
     public typealias ID = String
     public let _id: ID
@@ -15,6 +15,10 @@ public struct Allergy: Codable, Hashable, Sendable {
     public let info: LocalizedString
     public let web: LocalizedString
     public let beta: Bool
+    
+    public var id: String {
+        return _id
+    }
     
     public init(_id: ID, name: LocalizedString, info: LocalizedString, web: LocalizedString, beta: Bool) {
         self._id = _id
@@ -50,9 +54,12 @@ public struct Allergy: Codable, Hashable, Sendable {
         }
     }
 
-    public struct AllergyProba: Codable, Hashable, Sendable  {
+    public struct AllergyProba: Codable, Hashable, Sendable, Identifiable {
         public let allergy: Allergy.ID
         public var proba: Proba
+        public var id: Allergy.ID {
+            return allergy
+        }
         
         public init(allergy: Allergy.ID, proba: Proba) {
             self.allergy = allergy

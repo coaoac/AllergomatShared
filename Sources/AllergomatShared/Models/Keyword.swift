@@ -8,13 +8,16 @@
 
 import Foundation
 
-public struct Keyword: Codable, Hashable, Sendable {
+public struct Keyword: Codable, Hashable, Sendable, Identifiable {
     public static let _cname = "Keywords"
     public typealias ID = String
     public let _id: ID // word
     public var isIngredient: Bool
     public var allergies: [Allergy.AllergyProba] //by default if an allergy is not relevant it is not included
     public var updated: Date
+    public var id: String {
+        return _id
+    }
     
     public init(_id: ID, isIngredient: Bool, allergies: [Allergy.AllergyProba], updated: Date) {
         self._id = _id
