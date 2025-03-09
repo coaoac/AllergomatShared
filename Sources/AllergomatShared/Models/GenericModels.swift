@@ -25,7 +25,7 @@ public enum Proba: String, Codable, Comparable, Hashable {
         Proba.all().firstIndex(of: lhs) ?? 0 < Proba.all().firstIndex(of: rhs) ?? 0
     }
 
-    func english() -> String {
+    public func english() -> String {
         switch self {
             case .none: return "No risk"
             case .low: return "Low risk"
@@ -34,7 +34,7 @@ public enum Proba: String, Codable, Comparable, Hashable {
         }
     }
 
-    func swedish() -> String {
+    public func swedish() -> String {
         switch self {
             case .none: return "Ingen risk"
             case .low: return "Låg risk"
@@ -49,7 +49,7 @@ public enum Proba: String, Codable, Comparable, Hashable {
 
     case low, medium, high, none
 }
-
+/*
 public enum Status: Int, Codable, Comparable {
     case approved = 8//computed
     case rejected = 7//computed
@@ -62,11 +62,11 @@ public enum Status: Int, Codable, Comparable {
     case delete = 1
     case none = 0
 
-    static func all() -> [Status] {
+    public static func all() -> [Status] {
         [.none, .delete, .error, .local, .sending, .sent, .reviewed, .rejected, .approved]
     }
 
-    func english(short: Bool) -> String {
+    public func english(short: Bool) -> String {
         switch self {
         case .approved: return short ? "approved" : "Your input was approved!"
         case .rejected: return short ? "rejected" : "Your input contained errors it was corrected by our team"
@@ -80,7 +80,7 @@ public enum Status: Int, Codable, Comparable {
         }
     }
 
-    func swedish(short: Bool) -> String {
+    public func swedish(short: Bool) -> String {
         switch self {
         case .approved: return short ? "godkänd!" : "Din input har godkänts!"
         case .rejected: return short ? "nekad" : "Din input var fel. Det korrigerades av vårt team."
@@ -98,7 +98,7 @@ public enum Status: Int, Codable, Comparable {
         lhs.rawValue < rhs.rawValue
     }
 
-    func noReviewedStatus(same: Bool) -> Status {
+    public func noReviewedStatus(same: Bool) -> Status {
         if self == .reviewed {
             if same {
                 return .approved
@@ -110,11 +110,11 @@ public enum Status: Int, Codable, Comparable {
         }
     }
 }
-
+*/
 public struct Settings: Codable {
-    let userInfo: User.BasicUserInfo
-    let supportedAllergies: [Allergy]
-    let numberOfProducts: Int
-    let numberOfProductSearchesLast30Days: Int
+    public let userInfo: User.BasicUserInfo
+    public let supportedAllergies: [Allergy]
+    public let numberOfProducts: Int
+    public let numberOfProductSearchesLast30Days: Int
 }
 

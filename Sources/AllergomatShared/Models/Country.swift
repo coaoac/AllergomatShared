@@ -8,59 +8,59 @@
 import Foundation
 
 public struct Country: Codable {
-    static let _cname = "Countries"
-    typealias ID = String
-    let _id: ID //alpha2
-    let name: Name
-    let tld: [String]
-    let ccn3: String
-    let cca3: String //alpha3
-    let cioc: String
-    let independent: Bool?
-    let status: Status
-    let currencies: [String: Currency]
-    let idd: Idd
-    let capital: [String]
-    let altSpellings: [String]
-    let region: Region
-    let subregion: String
-    let languages: [String: String]
-    var translations: [String: Translation]
-    let latlng: [Double]
-    let demonym: String
-    let landlocked: Bool
-    let borders: [String]
-    let area: Double
-    let flag: String
-    let union: Union
-    let unionflag: String
+    public static let _cname = "Countries"
+    public typealias ID = String
+    public let _id: ID //alpha2
+    public let name: Name
+    public let tld: [String]
+    public let ccn3: String
+    public let cca3: String //alpha3
+    public let cioc: String
+    public let independent: Bool?
+    public let status: Status
+    public let currencies: [String: Currency]
+    public let idd: Idd
+    public let capital: [String]
+    public let altSpellings: [String]
+    public let region: Region
+    public let subregion: String
+    public let languages: [String: String]
+    public var translations: [String: Translation]
+    public let latlng: [Double]
+    public let demonym: String
+    public let landlocked: Bool
+    public let borders: [String]
+    public let area: Double
+    public let flag: String
+    public let union: Union
+    public let unionflag: String
 
     // MARK: Name
-    struct Name: Codable {
-        let common: String
-        let official: String
-        let native: [String: Translation]
+    public struct Name: Codable {
+        public let common: String
+        public let official: String
+        public let native: [String: Translation]
     }
 
     // MARK: Translation
-    struct Translation: Codable {
-        let official: String
-        let common: String
+    public struct Translation: Codable {
+        public let official: String
+        public let common: String
     }
 
     // MARK: Currency
-    struct Currency: Codable {
-        let name: String
-        let symbol: String
+    public struct Currency: Codable {
+        public let name: String
+        public let symbol: String
     }
 
     // MARK: Idd
-    struct Idd: Codable {
-        let root: String
-        let suffixes: [String]
+    public struct Idd: Codable {
+        public let root: String
+        public let suffixes: [String]
     }
 
-    enum Region: String, Codable {
+    public enum Region: String, Codable {
         case africa = "Africa"
         case americas = "Americas"
         case antarctic = "Antarctic"
@@ -69,32 +69,32 @@ public struct Country: Codable {
         case oceania = "Oceania"
     }
 
-    enum Status: String, Codable {
+    public enum Status: String, Codable {
         case officially_assigned
         case user_assigned
     }
 
-    enum Union: String, Codable {
+    public enum Union: String, Codable {
         case none = ""
         case eu
     }
 
-    struct CountryID: Codable {
-        let id: Country.ID
+    public struct CountryID: Codable {
+        public let id: Country.ID
     }
 
-    struct Simple: Codable, Hashable {
-        let _id: Country.ID
-        let english: String
-        let swedish: String
-        let flag: String
+    public struct Simple: Codable, Hashable {
+        public let _id: Country.ID
+        public let english: String
+        public let swedish: String
+        public let flag: String
 
-        static func none() -> Simple {
+        public static func none() -> Simple {
             Simple(_id: "", english: "", swedish: "", flag: "")
         }
 
-        struct List: Codable {
-            let items: [Simple]
+        public struct List: Codable {
+            public let items: [Simple]
         }
     }
 
@@ -111,6 +111,6 @@ public struct Country: Codable {
 
 
 public struct Country_Simple: Codable {
-    let name_en, name_se, flag, alpha2Code, alpha3Code, numCode, region: String
-    let isEU: Bool
+    public let name_en, name_se, flag, alpha2Code, alpha3Code, numCode, region: String
+    public let isEU: Bool
 }

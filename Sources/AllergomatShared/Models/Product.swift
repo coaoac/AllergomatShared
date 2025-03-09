@@ -1,55 +1,56 @@
 import Foundation
 
 public struct Product: Codable, Equatable {
-    static let _cname = "Products"
-    typealias ID = String
+    public static let _cname = "Products"
+    public typealias ID = String
 
-    let _id: ID // EAN
-    var name: String
-    var producer: String?
-    var origin: Country.ID?
-    var ingredients: String?
-    var image: Picture.ID?
-    var updated: Date
-    var dataSource: Source
+    public let _id: ID // EAN
+    public var name: String
+    public var producer: String?
+    public var origin: Country.ID?
+    public var ingredients: String?
+    public var image: Picture.ID?
+    public var updated: Date
+    public var dataSource: Source
 
-    enum Source: String, Codable {
+    public enum Source: String, Codable {
         case ica
         case coop
         case app
     }
 
-    struct WithPicture: Codable {
-        let product: Product
-        let picture: Picture?
+    public struct WithPicture: Codable {
+        public let product: Product
+        public let picture: Picture?
     }
-    struct EAN: Codable {
-        let ean: ID
-    }
-
-    struct Ingredients: Codable {
-        let ingredients: String
+    public struct EAN: Codable {
+        public let ean: ID
     }
 
-    struct EAN_and_UserID: Codable {
-        let ean: ID
-        let userID: User.ID?
+    public struct Ingredients: Codable {
+        public let ingredients: String
     }
 
-    struct EANs: Codable {
-        let eans: [ID]
+    public struct EAN_and_UserID: Codable {
+        public let ean: ID
+        public let userID: User.ID?
     }
 
-    struct List: Codable {
-        let items: [Product]
+    public struct EANs: Codable {
+        public let eans: [ID]
     }
 
-    struct Extended: Codable {
-        let product: Product
-        let ingredients: [Keyword]
+    public struct List: Codable {
+        public let items: [Product]
+    }
+
+    public struct Extended: Codable {
+        public let product: Product
+        public let ingredients: [Keyword]
     }
 
     // MARK: - Correction
+    /*
     struct Correction: Codable, Equatable {
         static let _cname = "ProductCorrections"
         typealias ID = String
@@ -131,18 +132,18 @@ public struct Product: Codable, Equatable {
             product == nil
         }
     }
+     */
 
 
-
-    struct ID_RawIngredients: Codable {
-        let id: Product.ID
-        let raw: String
+    public struct ID_RawIngredients: Codable {
+        public let id: Product.ID
+        public let raw: String
     }
 
-    struct Limit_String_ExcludedIds: Codable {
-        let limit: Int
-        let string: String?
-        let excludedIds: [Product.ID]
+    public struct Limit_String_ExcludedIds: Codable {
+        public let limit: Int
+        public let string: String?
+        public let excludedIds: [Product.ID]
     }
 }
 

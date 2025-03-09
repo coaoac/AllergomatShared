@@ -7,22 +7,22 @@
 
 import Foundation
 public struct Picture: Codable {
-    static let _cname = "Images"
-    typealias ID = String
-    let _id: ID
-    let data: Data
-    let dataType: DataType
-    let dataEncoding: DataEncoding
-    var user: User.ID?
-    var product: Product.ID
-    var updated: Date
+    public static let _cname = "Images"
+    public typealias ID = String
+    public let _id: ID
+    public let data: Data
+    public let dataType: DataType
+    public let dataEncoding: DataEncoding
+    public var user: User.ID?
+    public var product: Product.ID
+    public var updated: Date
 
-    enum DataType: String, Codable {
+    public enum DataType: String, Codable {
         case jpeg = "image/jpeg"
         case png = "image/png"
     }
 
-    enum DataEncoding: String, Codable {
+    public enum DataEncoding: String, Codable {
         case base64
     }
 
@@ -36,7 +36,7 @@ public struct Picture: Codable {
         self._id = product + (user ?? "")
     }
 
-    struct PictureID: Codable {
-        let _id: ID
+    public struct PictureID: Codable {
+        public let _id: ID
     }
 }

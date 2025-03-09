@@ -9,21 +9,21 @@
 import Foundation
 
 public struct Keyword: Codable, Hashable {
-    static let _cname = "Keywords"
-    typealias ID = String
-    let _id: ID // word
-    var isIngredient: Bool
-    var allergies: [Allergy.AllergyProba] //by default if an allergy is not relevant it is not included
-    var updated: Date
+    public static let _cname = "Keywords"
+    public typealias ID = String
+    public let _id: ID // word
+    public var isIngredient: Bool
+    public var allergies: [Allergy.AllergyProba] //by default if an allergy is not relevant it is not included
+    public var updated: Date
 
-    struct List: Codable {
-        let items: [Keyword]
+    public struct List: Codable {
+        public let items: [Keyword]
     }
 
-    struct One: Codable {
-        let name: Keyword.ID
+    public struct One: Codable {
+        public let name: Keyword.ID
     }
-
+/*
     struct Correction: Codable, Hashable {
         static let _cname = "KeywordCorrections"
         typealias ID = String
@@ -56,7 +56,7 @@ public struct Keyword: Codable, Hashable {
         }
     }
 
-    struct WithCorrection: Codable, Hashable {
+    public struct WithCorrection: Codable, Hashable {
         let keywordID: Keyword.ID
         var keyword: Keyword
         var correction: Correction?
@@ -98,14 +98,14 @@ public struct Keyword: Codable, Hashable {
             let ingredientsAndCorrections: [Keyword.WithCorrection]
         }
     }
-
-    struct Limit_ExcludedIds_String: Codable {
-        let limit: Int
-        let excludedIds: [Keyword.ID]
-        let string: String?
+*/
+    public struct Limit_ExcludedIds_String: Codable {
+        public let limit: Int
+        public let excludedIds: [Keyword.ID]
+        public let string: String?
     }
 
-    func customizedAllergy(_ allergyProba: Allergy.AllergyProba) -> Bool {
+    public func customizedAllergy(_ allergyProba: Allergy.AllergyProba) -> Bool {
         self.allergies.reduce(false) { result, nextAllergyProba in
             if nextAllergyProba.allergy == allergyProba.allergy {
                 return result || nextAllergyProba.proba != allergyProba.proba
@@ -115,7 +115,7 @@ public struct Keyword: Codable, Hashable {
         }
     }
 
-    func maxProba(for allergies: [Allergy.ID]) -> Proba {
+    public func maxProba(for allergies: [Allergy.ID]) -> Proba {
         var proba: Proba = .none
         let relevant = self.allergies.filter { allergies.contains($0.allergy) }
         for allergy in relevant {
@@ -126,7 +126,7 @@ public struct Keyword: Codable, Hashable {
         return proba
     }
 
-    func isAllergyRelevant(_ allergies: [Allergy.ID]) -> Bool {
+    public func isAllergyRelevant(_ allergies: [Allergy.ID]) -> Bool {
         for allergy in self.allergies {
             if allergies.contains(allergy.allergy) {
                 return true
@@ -156,24 +156,25 @@ extension Keyword: Equatable {
         }
     }
 }
-
-extension Keyword.Correction: Equatable {
-    static func == (lhs: Keyword.Correction, rhs: Keyword.Correction) -> Bool {
-        lhs._id == rhs._id
-            && lhs.isIngredient == rhs.isIngredient
-            && lhs.allergies.reduce(true) { result, nextAllergyProba in
-                if let rAllergyProba = rhs.allergies.first(where: { $0.allergy == nextAllergyProba.allergy }) {
-                    return result && rAllergyProba.proba == nextAllergyProba.proba
-                } else {
-                    return false
-                }
-            }
-            && rhs.allergies.reduce(true) { result, nextAllergyProba in
-                if let lAllergyProba = lhs.allergies.first(where: { $0.allergy == nextAllergyProba.allergy }) {
-                    return result && lAllergyProba.proba == nextAllergyProba.proba
-                } else {
-                    return false
-                }
-            }
-    }
-}
+/*
+ extension Keyword.Correction: Equatable {
+ public static func == (lhs: Keyword.Correction, rhs: Keyword.Correction) -> Bool {
+ lhs._id == rhs._id
+ && lhs.isIngredient == rhs.isIngredient
+ && lhs.allergies.reduce(true) { result, nextAllergyProba in
+ if let rAllergyProba = rhs.allergies.first(where: { $0.allergy == nextAllergyProba.allergy }) {
+ return result && rAllergyProba.proba == nextAllergyProba.proba
+ } else {
+ return false
+ }
+ }
+ && rhs.allergies.reduce(true) { result, nextAllergyProba in
+ if let lAllergyProba = lhs.allergies.first(where: { $0.allergy == nextAllergyProba.allergy }) {
+ return result && lAllergyProba.proba == nextAllergyProba.proba
+ } else {
+ return false
+ }
+ }
+ }
+ }
+ */

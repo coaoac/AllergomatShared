@@ -9,21 +9,21 @@
 import Foundation
 
 public struct User: Codable {
-    static let _cname = "Users"
-    typealias ID = String
-    let _id: ID
-    var name: String?
-    var email: String?
-    var realUserStatus: Int
-    var role: Role
-    var experience: Int
-    var appleID: ID?
-    var allergies: [Allergy.ID]?
-    var products: [Product.ID]?
-    var ingredients: [Keyword.ID]?
-    let joined: Date
+    public static let _cname = "Users"
+    public typealias ID = String
+    public let _id: ID
+    public var name: String?
+    public var email: String?
+    public var realUserStatus: Int
+    public var role: Role
+    public var experience: Int
+    public var appleID: ID?
+    public var allergies: [Allergy.ID]?
+    public var products: [Product.ID]?
+    public var ingredients: [Keyword.ID]?
+    public let joined: Date
 
-    func updated(from userInfo: BasicUserInfo) -> User {
+    public func updated(from userInfo: BasicUserInfo) -> User {
         User(_id: _id,
              name: userInfo.name,
              email: userInfo.email,
@@ -37,38 +37,38 @@ public struct User: Codable {
              joined: joined)
     }
 
-    struct Credentials: Codable {
-        let name: String?
-        let email: String?
-        let realUserStatus: Int
-        let appCode: String
-        let source: Source
+    public struct Credentials: Codable {
+        public let name: String?
+        public let email: String?
+        public let realUserStatus: Int
+        public let appCode: String
+        public let source: Source
     }
     
-    struct Payment: Codable, Equatable {
-        static let _cname = "Payments"
-        typealias ID = String
-        let _id: ID
-        let user: User.ID
-        let productID: ProductID
-        let paymentId: String
-        let date: Date
-        let expiry: Date
+    public struct Payment: Codable, Equatable {
+        public static let _cname = "Payments"
+        public typealias ID = String
+        public let _id: ID
+        public let user: User.ID
+        public let productID: ProductID
+        public let paymentId: String
+        public let date: Date
+        public let expiry: Date
 
-        enum ProductID: String, Codable {
+        public enum ProductID: String, Codable {
             case monthly = "app.allergomat.plus.monthly"
             case yearly = "app.allergomat.plus.yearly"
         }
     }
     
-    enum Role: String, Codable {
+    public enum Role: String, Codable {
         case normal
         case superuser
         case admin
         case owner
         case invalid
         
-        func english() -> String {
+        public func english() -> String {
             switch self {
                 case .normal: return "User"
                 case .superuser: return "Superuser"
@@ -78,7 +78,7 @@ public struct User: Codable {
             }
         }
         
-        func swedish() -> String {
+        public func swedish() -> String {
             switch self {
                 case .normal: return "Användare"
                 case .owner: return "Ägare"
@@ -88,58 +88,58 @@ public struct User: Codable {
             }
         }
         
-        static func allValid() -> [Role] {
+        public static func allValid() -> [Role] {
             [.normal, .superuser, .admin, .owner]
         }
         
-        static func allAdmin() -> [Role] {
+        public static func allAdmin() -> [Role] {
             [.superuser, .admin, .owner]
         }
         
-        func isAdmin() -> Bool {
+        public func isAdmin() -> Bool {
             Self.allAdmin().contains(self)
         }
     }
     
-    enum Source: String, Codable {
+    public enum Source: String, Codable {
         case apple
     }
     
-    struct WithToken: Codable {
-        let user: User
-        let token: Token
+    public struct WithToken: Codable {
+        public let user: User
+        public let token: Token
     }
 
-    struct Token: Codable, Equatable {
-        static let _cname = "Tokens"
-        typealias ID = String
-        let _id: ID
-        let user: User.ID
-        let date: Date
-        var expiryDate: Date
+    public struct Token: Codable, Equatable {
+        public static let _cname = "Tokens"
+        public typealias ID = String
+        public let _id: ID
+        public let user: User.ID
+        public let date: Date
+        public var expiryDate: Date
     }
 
 
-    struct Device: Codable {
-        let model: String
-        let systemName: String
-        let systemVersion: String
+    public struct Device: Codable {
+        public let model: String
+        public let systemName: String
+        public let systemVersion: String
     }
 
     public struct BasicUserInfo: Codable, Equatable {
-        let _id: ID
-        var name: String?
-        var email: String?
-        let realUserStatus: Int
-        var role: User.Role
-        var experience: Int
-        var payments: [User.Payment]
-        var allergies: [Allergy.ID]?
-        var products: [Product.ID]?
-        var ingredients: [Keyword.ID]?
-        var token: Token.ID
+        public let _id: ID
+        public var name: String?
+        public var email: String?
+        public let realUserStatus: Int
+        public var role: User.Role
+        public var experience: Int
+        public var payments: [User.Payment]
+        public var allergies: [Allergy.ID]?
+        public var products: [Product.ID]?
+        public var ingredients: [Keyword.ID]?
+        public var token: Token.ID
 
-        static func from(user: User, payments: [Payment], token: Token) -> BasicUserInfo {
+        public static func from(user: User, payments: [Payment], token: Token) -> BasicUserInfo {
             BasicUserInfo(_id: user._id,
                           name: user.name,
                           email: user.email,
@@ -169,40 +169,20 @@ public struct User: Codable {
             }
         }
 
-        func hasValidSubscription() -> Bool {
+        public func hasValidSubscription() -> Bool {
             self.payments.contains {
                 $0.expiry >= Date()
             }
             || role.isAdmin()
         }
 
-        func ulockedFor(experience: Int = 0) -> Bool {
+        public func ulockedFor(experience: Int = 0) -> Bool {
             role.isAdmin() || self.experience >= experience
         }
     }
 }
 
-public struct Transaction: Codable {
-    static let _cname = "Transactions"
-    typealias ID = String
-    let _id: ID
-    let userID: String?
-    let country: String?
-    let userAgent: String?
-    let collection: String
-    let item: String?
-    let nature: Nature
-    let time: Date
-    let source: Source
-    
-    enum Nature: String, Codable {
-        case top, read, update, insert, delete, login, logout, search, history
-    }
 
-    enum Source: String, Codable {
-        case app, web
-    }
-}
 
 
 

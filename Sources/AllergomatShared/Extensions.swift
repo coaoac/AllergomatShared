@@ -9,7 +9,7 @@ import Foundation
 
 extension String {
 
-    func upperCaseWords() -> [String] {
+    public func upperCaseWords() -> [String] {
         var array = [String]()
         var st = ""
         for character in self {
@@ -25,11 +25,11 @@ extension String {
         return array
     }
 
-    static func random() -> String {
+    public static func random() -> String {
         return Date().description.replacingOccurrences(of: " ", with: "-") + UUID().uuidString + String(Double.random(in: 0...99999999999999995164818811802792197885196090803013355167206819763650035712))
     }
 
-    func rangesOf(subString: String) -> [(Int, Int)] {
+    public func rangesOf(subString: String) -> [(Int, Int)] {
         var indices = [(Int, Int)]()
         var searchStartIndex = self.startIndex
 
@@ -44,12 +44,10 @@ extension String {
 
         return indices
     }
-
-
 }
 
 extension Array where Element: Hashable {
-    func uniques() -> Array {
+    public func uniques() -> Array {
         var buffer = Array()
         var added = Set<Element>()
         for elem in self {
@@ -63,14 +61,14 @@ extension Array where Element: Hashable {
 }
 
 extension Date {
-    func add(days: Int) -> Date {
+    public func add(days: Int) -> Date {
         self.addingTimeInterval(TimeInterval(days)*24*60*60)
     }
 }
 
-struct CodbleWithDeletionInfo <T: Codable> {
-    let codable: T
-    let deleted: Bool
+public struct CodbleWithDeletionInfo <T: Codable> {
+    public let codable: T
+    public let deleted: Bool
 }
 
 
@@ -82,11 +80,11 @@ public struct SynchronizedSemaphore<Value> {
         self._value = value
     }
 
-    var value: Value {
+    public var value: Value {
         mutex.lock { _value }
     }
 
-    mutating func value(execute task: (inout Value) -> Void) {
+    public mutating func value(execute task: (inout Value) -> Void) {
         mutex.lock { task(&_value) }
     }
 }

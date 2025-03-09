@@ -9,12 +9,12 @@ import Foundation
 
 public struct FError: Error, Identifiable, Codable {
     public let id: Reason
-    let source: Source
-    var code: Int = 500
-    var message: String? = nil
+    public let source: Source
+    public var code: Int = 500
+    public var message: String? = nil
 
 
-    enum Source: String, Codable {
+    public enum Source: String, Codable, Sendable {
         case server
         case app
     }
@@ -118,9 +118,9 @@ public struct FError: Error, Identifiable, Codable {
 
     }
 
-    struct ServerError: Codable {
-        let error: Bool
-        let reason: Reason
+    public struct ServerError: Codable {
+        public let error: Bool
+        public let reason: Reason
     }
 }
 

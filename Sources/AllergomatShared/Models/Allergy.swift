@@ -8,15 +8,15 @@
 import Foundation
 
 public struct Allergy: Codable, Hashable {
-     static let _cname = "Allergies"
-     typealias ID = String
-     let _id: ID
-     let name: LocalizedString
-     let info: LocalizedString
-    let web: LocalizedString
-     let beta: Bool
+    public static let _cname = "Allergies"
+    public typealias ID = String
+    public let _id: ID
+    public let name: LocalizedString
+    public let info: LocalizedString
+    public let web: LocalizedString
+    public let beta: Bool
 
-     func maxProba(ingredients: [Keyword?]) -> AllergyProba {
+    public func maxProba(ingredients: [Keyword?]) -> AllergyProba {
         ingredients.map { ingredient in
             ingredient?.allergies.first{ $0.allergy == _id } ?? Allergy.AllergyProba(allergy: self._id, proba: .none)
         }.sorted { lhs, rhs in
@@ -25,10 +25,10 @@ public struct Allergy: Codable, Hashable {
     }
 
     public struct Reduce: Codable {
-        let allergy: Allergy
-        var active: Bool?
+        public let allergy: Allergy
+        public var active: Bool?
 
-        func isActive() -> Bool {
+        public func isActive() -> Bool {
             if active == true {
                 return true
             } else {
@@ -38,22 +38,21 @@ public struct Allergy: Codable, Hashable {
     }
 
     public struct AllergyProba: Codable, Hashable {
-        let allergy: Allergy.ID
-        var proba: Proba
+        public let allergy: Allergy.ID
+        public var proba: Proba
 
-        struct WithOriginal: Codable, Hashable {
-            var allergyProba: Allergy.AllergyProba
-            let original: Allergy.AllergyProba
-
-            func changed() -> Bool {
+        public struct WithOriginal: Codable, Hashable {
+            public var allergyProba: Allergy.AllergyProba
+            public let original: Allergy.AllergyProba
+            
+            public func changed() -> Bool {
                 allergyProba != original
             }
-
-            func status(ingredients: [Keyword.WithCorrection?]) -> Status? {
+            /*
+            public func status(ingredients: [Keyword.WithCorrection?]) -> Status? {
                 let relevantIngredients = ingredients.filter {
                     $0?.corrected().allergies.contains { $0.allergy == allergyProba.allergy } ?? false
                 }
-
                 if let relevantIngredient = relevantIngredients.sorted(by: { ($0?.correction?.status ?? .none) < ($1?.correction?.status ?? .none)
                 }).first {
                     return relevantIngredient?.correction?.status
@@ -61,6 +60,7 @@ public struct Allergy: Codable, Hashable {
                     return nil
                 }
             }
+            */
         }
     }
 }
