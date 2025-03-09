@@ -74,7 +74,7 @@ struct CodbleWithDeletionInfo <T: Codable> {
 }
 
 
-struct SynchronizedSemaphore<Value> {
+public struct SynchronizedSemaphore<Value> {
     private let mutex = DispatchSemaphore(value: 1)
     private var _value: Value
 

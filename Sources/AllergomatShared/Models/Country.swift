@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Country: Codable {
+public struct Country: Codable {
     static let _cname = "Countries"
     typealias ID = String
     let _id: ID //alpha2
@@ -110,7 +110,7 @@ struct Country: Codable {
 
 
 
-struct Country_Simple: Codable {
+public struct Country_Simple: Codable {
     let name_en, name_se, flag, alpha2Code, alpha3Code, numCode, region: String
     let isEU: Bool
 }

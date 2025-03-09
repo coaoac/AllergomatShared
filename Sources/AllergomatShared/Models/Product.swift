@@ -1,6 +1,6 @@
 import Foundation
-/*
-struct Product: Codable, Equatable {
+
+public struct Product: Codable, Equatable {
     static let _cname = "Products"
     typealias ID = String
 
@@ -145,7 +145,5 @@ struct Product: Codable, Equatable {
         let excludedIds: [Product.ID]
     }
 }
-
-*/
 
 

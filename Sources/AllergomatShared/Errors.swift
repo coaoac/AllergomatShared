@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct FError: Error, Identifiable, Codable {
-    let id: Reason
+public struct FError: Error, Identifiable, Codable {
+    public let id: Reason
     let source: Source
     var code: Int = 500
     var message: String? = nil
@@ -19,7 +19,7 @@ struct FError: Error, Identifiable, Codable {
         case app
     }
 
-    enum Reason: String, Codable {
+    public enum Reason: String, Codable, Sendable {
         // MARK: APP
         case no_self
 
@@ -125,7 +125,7 @@ struct FError: Error, Identifiable, Codable {
 }
 
 extension FError: Equatable {
-    static func == (lhs: FError, rhs: FError) -> Bool {
+    public static func == (lhs: FError, rhs: FError) -> Bool {
         if lhs.id == rhs.id {
             return true
         } else {

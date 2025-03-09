@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Keyword: Codable, Hashable {
+public struct Keyword: Codable, Hashable {
     static let _cname = "Keywords"
     typealias ID = String
     let _id: ID // word
@@ -137,7 +137,7 @@ struct Keyword: Codable, Hashable {
 }
 
 extension Keyword: Equatable {
-    static func == (lhs: Keyword, rhs: Keyword) -> Bool {
+    public static func == (lhs: Keyword, rhs: Keyword) -> Bool {
         lhs._id == rhs._id
             && lhs.isIngredient == rhs.isIngredient
             && lhs.allergies.reduce(true) { result, nextAllergyProba in

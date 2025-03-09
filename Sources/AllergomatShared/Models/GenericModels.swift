@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct LocalizedString: Codable, Hashable {
+public struct LocalizedString: Codable, Hashable {
     let en: String
     let se: String
 }
 
-struct OK: Codable {
+public struct OK: Codable {
     let ok: Bool
 
     init(_ ok: Bool) {
@@ -20,8 +20,8 @@ struct OK: Codable {
     }
 }
 
-enum Proba: String, Codable, Comparable, Hashable {
-    static func < (lhs: Proba, rhs: Proba) -> Bool {
+public enum Proba: String, Codable, Comparable, Hashable {
+    public static func < (lhs: Proba, rhs: Proba) -> Bool {
         Proba.all().firstIndex(of: lhs) ?? 0 < Proba.all().firstIndex(of: rhs) ?? 0
     }
 
@@ -50,7 +50,7 @@ enum Proba: String, Codable, Comparable, Hashable {
     case low, medium, high, none
 }
 
-enum Status: Int, Codable, Comparable {
+public enum Status: Int, Codable, Comparable {
     case approved = 8//computed
     case rejected = 7//computed
 
@@ -94,7 +94,7 @@ enum Status: Int, Codable, Comparable {
         }
     }
 
-    static func < (lhs: Status, rhs: Status) -> Bool {
+    public static func < (lhs: Status, rhs: Status) -> Bool {
         lhs.rawValue < rhs.rawValue
     }
 
@@ -111,7 +111,7 @@ enum Status: Int, Codable, Comparable {
     }
 }
 
-struct Settings: Codable {
+public struct Settings: Codable {
     let userInfo: User.BasicUserInfo
     let supportedAllergies: [Allergy]
     let numberOfProducts: Int

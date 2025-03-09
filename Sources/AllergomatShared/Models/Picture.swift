@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct Picture: Codable {
+public struct Picture: Codable {
     static let _cname = "Images"
     typealias ID = String
     let _id: ID

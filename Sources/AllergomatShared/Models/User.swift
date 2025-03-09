@@ -8,7 +8,7 @@
 //import Authentication
 import Foundation
 
-struct User: Codable {
+public struct User: Codable {
     static let _cname = "Users"
     typealias ID = String
     let _id: ID
@@ -182,7 +182,7 @@ struct User: Codable {
     }
 }
 
-struct Transaction: Codable {
+public struct Transaction: Codable {
     static let _cname = "Transactions"
     typealias ID = String
     let _id: ID
