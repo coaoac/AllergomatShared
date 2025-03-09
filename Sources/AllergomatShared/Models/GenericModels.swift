@@ -54,8 +54,8 @@ public enum Proba: String, Codable, Comparable, Hashable, Sendable {
 
     case low, medium, high, none
 }
-/*
-public enum Status: Int, Codable, Comparable {
+
+public enum Status: Int, Codable, Comparable, Sendable {
     case approved = 8//computed
     case rejected = 7//computed
 
@@ -115,7 +115,7 @@ public enum Status: Int, Codable, Comparable {
         }
     }
 }
-*/
+
 public struct Settings: Codable, Sendable {
     public let userInfo: User.BasicUserInfo
     public let supportedAllergies: [Allergy]
