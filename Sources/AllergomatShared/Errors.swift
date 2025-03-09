@@ -13,7 +13,7 @@ public struct FError: Error, Identifiable, Codable, Sendable {
     public var code: Int = 500
     public var message: String? = nil
     
-    public init(id: Reason, source: Source, code: Int, message: String? = nil) {
+    public init(id: Reason, source: Source, code: Int = 500, message: String? = nil) {
         self.id = id
         self.source = source
         self.code = code
