@@ -126,7 +126,7 @@ public struct User: Codable {
         let systemVersion: String
     }
 
-    struct BasicUserInfo: Codable, Equatable {
+    public struct BasicUserInfo: Codable, Equatable {
         let _id: ID
         var name: String?
         var email: String?
@@ -153,7 +153,7 @@ public struct User: Codable {
                           token: token._id)
         }
 
-        static func == (lhs: BasicUserInfo, rhs: BasicUserInfo) -> Bool {
+        public static func == (lhs: BasicUserInfo, rhs: BasicUserInfo) -> Bool {
             if lhs._id == rhs._id,
                  lhs.name == rhs.name,
                  lhs.email == rhs.email,

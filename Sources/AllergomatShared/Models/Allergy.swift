@@ -8,15 +8,15 @@
 import Foundation
 
 public struct Allergy: Codable, Hashable {
-    static let _cname = "Allergies"
-    typealias ID = String
-    let _id: ID
-    let name: LocalizedString
-    let info: LocalizedString
+     static let _cname = "Allergies"
+     typealias ID = String
+     let _id: ID
+     let name: LocalizedString
+     let info: LocalizedString
     let web: LocalizedString
-    let beta: Bool
+     let beta: Bool
 
-    func maxProba(ingredients: [Keyword?]) -> AllergyProba {
+     func maxProba(ingredients: [Keyword?]) -> AllergyProba {
         ingredients.map { ingredient in
             ingredient?.allergies.first{ $0.allergy == _id } ?? Allergy.AllergyProba(allergy: self._id, proba: .none)
         }.sorted { lhs, rhs in
@@ -24,7 +24,7 @@ public struct Allergy: Codable, Hashable {
         }.first ?? Allergy.AllergyProba(allergy: self._id, proba: .none)
     }
 
-    struct Reduce: Codable {
+    public struct Reduce: Codable {
         let allergy: Allergy
         var active: Bool?
 
@@ -37,7 +37,7 @@ public struct Allergy: Codable, Hashable {
         }
     }
 
-    struct AllergyProba: Codable, Hashable {
+    public struct AllergyProba: Codable, Hashable {
         let allergy: Allergy.ID
         var proba: Proba
 
