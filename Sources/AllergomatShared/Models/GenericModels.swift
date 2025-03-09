@@ -7,15 +7,15 @@
 
 import Foundation
 
-public struct LocalizedString: Codable, Hashable {
-    let en: String
-    let se: String
+public struct LocalizedString: Codable, Hashable, Sendable {
+    public let en: String
+    public let se: String
 }
 
 public struct OK: Codable {
-    let ok: Bool
+    public let ok: Bool
 
-    init(_ ok: Bool) {
+    public init(_ ok: Bool) {
         self.ok = ok
     }
 }
@@ -111,7 +111,7 @@ public enum Status: Int, Codable, Comparable {
     }
 }
 */
-public struct Settings: Codable {
+public struct Settings: Codable, Sendable {
     public let userInfo: User.BasicUserInfo
     public let supportedAllergies: [Allergy]
     public let numberOfProducts: Int

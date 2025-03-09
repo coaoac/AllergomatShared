@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Allergy: Codable, Hashable {
+public struct Allergy: Codable, Hashable, Sendable {
     public static let _cname = "Allergies"
     public typealias ID = String
     public let _id: ID

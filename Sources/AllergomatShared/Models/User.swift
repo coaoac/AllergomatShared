@@ -45,7 +45,7 @@ public struct User: Codable {
         public let source: Source
     }
     
-    public struct Payment: Codable, Equatable {
+    public struct Payment: Codable, Equatable, Sendable {
         public static let _cname = "Payments"
         public typealias ID = String
         public let _id: ID
@@ -55,13 +55,13 @@ public struct User: Codable {
         public let date: Date
         public let expiry: Date
 
-        public enum ProductID: String, Codable {
+        public enum ProductID: String, Codable, Sendable {
             case monthly = "app.allergomat.plus.monthly"
             case yearly = "app.allergomat.plus.yearly"
         }
     }
     
-    public enum Role: String, Codable {
+    public enum Role: String, Codable, Sendable {
         case normal
         case superuser
         case admin
@@ -126,7 +126,7 @@ public struct User: Codable {
         public let systemVersion: String
     }
 
-    public struct BasicUserInfo: Codable, Equatable {
+    public struct BasicUserInfo: Codable, Equatable, Sendable {
         public let _id: ID
         public var name: String?
         public var email: String?
