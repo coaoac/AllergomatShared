@@ -27,4 +27,16 @@ public struct Transaction: Codable, Sendable {
     public enum Source: String, Codable, Sendable {
         case app, web
     }
+    
+    public init(_id: ID, userID: String?, country: String?, userAgent: String?, collection: String, item: String?, nature: Nature, time: Date, source: Source) {
+        self._id = _id
+        self.userID = userID
+        self.country = country
+        self.userAgent = userAgent
+        self.collection = collection
+        self.item = item
+        self.nature = nature
+        self.time = time
+        self.source = source
+    }
 }

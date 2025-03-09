@@ -22,6 +22,20 @@ public struct User: Codable, Sendable {
     public var products: [Product.ID]?
     public var ingredients: [Keyword.ID]?
     public let joined: Date
+    
+    public init(_id: ID, name: String? = nil, email: String? = nil, realUserStatus: Int, role: Role, experience: Int, appleID: ID? = nil, allergies: [Allergy.ID]? = nil, products: [Product.ID]? = nil, ingredients: [Keyword.ID]? = nil, joined: Date) {
+        self._id = _id
+        self.name = name
+        self.email = email
+        self.realUserStatus = realUserStatus
+        self.role = role
+        self.experience = experience
+        self.appleID = appleID
+        self.allergies = allergies
+        self.products = products
+        self.ingredients = ingredients
+        self.joined = joined
+    }
 
     public func updated(from userInfo: BasicUserInfo) -> User {
         User(_id: _id,
@@ -43,6 +57,14 @@ public struct User: Codable, Sendable {
         public let realUserStatus: Int
         public let appCode: String
         public let source: Source
+        
+        public init(name: String?, email: String?, realUserStatus: Int, appCode: String, source: Source) {
+            self.name = name
+            self.email = email
+            self.realUserStatus = realUserStatus
+            self.appCode = appCode
+            self.source = source
+        }
     }
     
     public struct Payment: Codable, Equatable, Sendable {
@@ -58,6 +80,15 @@ public struct User: Codable, Sendable {
         public enum ProductID: String, Codable, Sendable {
             case monthly = "app.allergomat.plus.monthly"
             case yearly = "app.allergomat.plus.yearly"
+        }
+        
+        public init(_id: ID, user: User.ID, productID: ProductID, paymentId: String, date: Date, expiry: Date) {
+            self._id = _id
+            self.user = user
+            self.productID = productID
+            self.paymentId = paymentId
+            self.date = date
+            self.expiry = expiry
         }
     }
     
@@ -108,6 +139,11 @@ public struct User: Codable, Sendable {
     public struct WithToken: Codable, Sendable {
         public let user: User
         public let token: Token
+        
+        public init(user: User, token: Token) {
+            self.user = user
+            self.token = token
+        }
     }
 
     public struct Token: Codable, Equatable, Sendable {
@@ -117,6 +153,13 @@ public struct User: Codable, Sendable {
         public let user: User.ID
         public let date: Date
         public var expiryDate: Date
+        
+        public init(_id: ID, user: User.ID, date: Date, expiryDate: Date) {
+            self._id = _id
+            self.user = user
+            self.date = date
+            self.expiryDate = expiryDate
+        }
     }
 
 
@@ -124,6 +167,12 @@ public struct User: Codable, Sendable {
         public let model: String
         public let systemName: String
         public let systemVersion: String
+        
+        public init(model: String, systemName: String, systemVersion: String) {
+            self.model = model
+            self.systemName = systemName
+            self.systemVersion = systemVersion
+        }
     }
 
     public struct BasicUserInfo: Codable, Equatable, Sendable {
@@ -138,6 +187,20 @@ public struct User: Codable, Sendable {
         public var products: [Product.ID]?
         public var ingredients: [Keyword.ID]?
         public var token: Token.ID
+        
+        public init(_id: ID, name: String? = nil, email: String? = nil, realUserStatus: Int, role: User.Role, experience: Int, payments: [User.Payment], allergies: [Allergy.ID]? = nil, products: [Product.ID]? = nil, ingredients: [Keyword.ID]? = nil, token: Token.ID) {
+            self._id = _id
+            self.name = name
+            self.email = email
+            self.realUserStatus = realUserStatus
+            self.role = role
+            self.experience = experience
+            self.payments = payments
+            self.allergies = allergies
+            self.products = products
+            self.ingredients = ingredients
+            self.token = token
+        }
 
         public static func from(user: User, payments: [Payment], token: Token) -> BasicUserInfo {
             BasicUserInfo(_id: user._id,

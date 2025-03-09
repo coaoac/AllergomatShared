@@ -15,94 +15,40 @@ public struct Keyword: Codable, Hashable, Sendable {
     public var isIngredient: Bool
     public var allergies: [Allergy.AllergyProba] //by default if an allergy is not relevant it is not included
     public var updated: Date
+    
+    public init(_id: ID, isIngredient: Bool, allergies: [Allergy.AllergyProba], updated: Date) {
+        self._id = _id
+        self.isIngredient = isIngredient
+        self.allergies = allergies
+        self.updated = updated
+    }
 
     public struct List: Codable, Sendable {
         public let items: [Keyword]
+        
+        public init(items: [Keyword]) {
+            self.items = items
+        }
     }
 
     public struct One: Codable, Sendable {
         public let name: Keyword.ID
-    }
-/*
-    struct Correction: Codable, Hashable {
-        static let _cname = "KeywordCorrections"
-        typealias ID = String
-
-        let _id: ID
-        let user: User.ID
-        let keyword: Keyword.ID
-        var isIngredient: Bool? // nil means not corrected
-        var allergies: [Allergy.AllergyProba] // only includes edited allergies. if empty means delete the correction
-        var status: Status
-        var updated: Date
-
-        init(userID: User.ID, keyword: Keyword.ID, isIngredient: Bool?, allergies: [Allergy.AllergyProba], status: Status, update: Date) {
-            self.user = userID
-            self.keyword = keyword
-            self.isIngredient = isIngredient
-            self.allergies = allergies
-            self.status = status
-            self.updated = update
-            self._id = userID + "+" + keyword
-        }
-
-        struct Review: Codable {
-            var correction: Correction
-            let approval: Bool
-        }
-
-        struct OneIfExists: Codable {
-            let correction: Correction?
+        
+        public init(name: Keyword.ID) {
+            self.name = name
         }
     }
 
-    public struct WithCorrection: Codable, Hashable {
-        let keywordID: Keyword.ID
-        var keyword: Keyword
-        var correction: Correction?
-
-
-        private func correctedAllergies() -> [Allergy.AllergyProba] {
-            if let correction = correction {
-                if correction.isIngredient == false {
-                    return []
-                } else {
-                    var allergies = keyword.allergies.map { ap -> Allergy.AllergyProba in
-                        if let cap = correction.allergies.first(where: { $0.allergy == ap.allergy }) {
-                            return cap
-                        }
-                        return ap
-                    }
-
-                    for cap in correction.allergies {
-                        if !allergies.contains(where: { ap in
-                            ap.allergy == cap.allergy
-                        }) {
-                            allergies.append(cap)
-                        }
-                    }
-                    return allergies
-                }
-            }
-            return keyword.allergies
-        }
-
-        func corrected() -> Keyword {
-            Keyword(_id: keywordID,
-                    isIngredient: correction?.isIngredient ?? keyword.isIngredient,
-                    allergies: correctedAllergies(),
-                    updated: correction?.updated ?? keyword.updated)
-        }
-
-        struct List: Codable {
-            let ingredientsAndCorrections: [Keyword.WithCorrection]
-        }
-    }
-*/
     public struct Limit_ExcludedIds_String: Codable, Sendable {
         public let limit: Int
         public let excludedIds: [Keyword.ID]
         public let string: String?
+        
+        public init(limit: Int, excludedIds: [Keyword.ID], string: String?) {
+            self.limit = limit
+            self.excludedIds = excludedIds
+            self.string = string
+        }
     }
 
     public func customizedAllergy(_ allergyProba: Allergy.AllergyProba) -> Bool {
@@ -156,25 +102,4 @@ extension Keyword: Equatable {
         }
     }
 }
-/*
- extension Keyword.Correction: Equatable {
- public static func == (lhs: Keyword.Correction, rhs: Keyword.Correction) -> Bool {
- lhs._id == rhs._id
- && lhs.isIngredient == rhs.isIngredient
- && lhs.allergies.reduce(true) { result, nextAllergyProba in
- if let rAllergyProba = rhs.allergies.first(where: { $0.allergy == nextAllergyProba.allergy }) {
- return result && rAllergyProba.proba == nextAllergyProba.proba
- } else {
- return false
- }
- }
- && rhs.allergies.reduce(true) { result, nextAllergyProba in
- if let lAllergyProba = lhs.allergies.first(where: { $0.allergy == nextAllergyProba.allergy }) {
- return result && lAllergyProba.proba == nextAllergyProba.proba
- } else {
- return false
- }
- }
- }
- }
- */
+

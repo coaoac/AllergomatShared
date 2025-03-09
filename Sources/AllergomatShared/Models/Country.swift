@@ -97,9 +97,7 @@ public struct Country: Codable, Sendable {
             public let items: [Simple]
         }
     }
-
-
-
+    
     public func simple() -> Simple {
         let translation = name.native["swe"]?.common ?? name.common
         return Country.Simple(_id: _id, english: name.common, swedish: translation, flag: flag)

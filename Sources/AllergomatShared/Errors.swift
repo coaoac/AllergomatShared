@@ -12,7 +12,13 @@ public struct FError: Error, Identifiable, Codable, Sendable {
     public let source: Source
     public var code: Int = 500
     public var message: String? = nil
-
+    
+    public init(id: Reason, source: Source, code: Int, message: String? = nil) {
+        self.id = id
+        self.source = source
+        self.code = code
+        self.message = message
+    }
 
     public enum Source: String, Codable, Sendable {
         case server
@@ -121,6 +127,11 @@ public struct FError: Error, Identifiable, Codable, Sendable {
     public struct ServerError: Codable, Sendable {
         public let error: Bool
         public let reason: Reason
+        
+        public init(error: Bool, reason: Reason) {
+            self.error = error
+            self.reason = reason
+        }
     }
 }
 

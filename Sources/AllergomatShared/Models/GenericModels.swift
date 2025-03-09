@@ -10,6 +10,11 @@ import Foundation
 public struct LocalizedString: Codable, Hashable, Sendable {
     public let en: String
     public let se: String
+    
+    public init(en: String, se: String) {
+        self.en = en
+        self.se = se
+    }
 }
 
 public struct OK: Codable, Sendable {
@@ -116,5 +121,12 @@ public struct Settings: Codable, Sendable {
     public let supportedAllergies: [Allergy]
     public let numberOfProducts: Int
     public let numberOfProductSearchesLast30Days: Int
+    
+    public init(userInfo: User.BasicUserInfo, supportedAllergies: [Allergy], numberOfProducts: Int, numberOfProductSearchesLast30Days: Int) {
+        self.userInfo = userInfo
+        self.supportedAllergies = supportedAllergies
+        self.numberOfProducts = numberOfProducts
+        self.numberOfProductSearchesLast30Days = numberOfProductSearchesLast30Days
+    }
 }
 

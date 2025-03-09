@@ -15,6 +15,14 @@ public struct Allergy: Codable, Hashable, Sendable {
     public let info: LocalizedString
     public let web: LocalizedString
     public let beta: Bool
+    
+    public init(_id: ID, name: LocalizedString, info: LocalizedString, web: LocalizedString, beta: Bool) {
+        self._id = _id
+        self.name = name
+        self.info = info
+        self.web = web
+        self.beta = beta
+    }
 
     public func maxProba(ingredients: [Keyword?]) -> AllergyProba {
         ingredients.map { ingredient in
@@ -35,6 +43,11 @@ public struct Allergy: Codable, Hashable, Sendable {
                 return false
             }
         }
+        
+        public init(allergy: Allergy, active: Bool? = nil) {
+            self.allergy = allergy
+            self.active = active
+        }
     }
 
     public struct AllergyProba: Codable, Hashable, Sendable  {
@@ -48,19 +61,11 @@ public struct Allergy: Codable, Hashable, Sendable {
             public func changed() -> Bool {
                 allergyProba != original
             }
-            /*
-            public func status(ingredients: [Keyword.WithCorrection?]) -> Status? {
-                let relevantIngredients = ingredients.filter {
-                    $0?.corrected().allergies.contains { $0.allergy == allergyProba.allergy } ?? false
-                }
-                if let relevantIngredient = relevantIngredients.sorted(by: { ($0?.correction?.status ?? .none) < ($1?.correction?.status ?? .none)
-                }).first {
-                    return relevantIngredient?.correction?.status
-                } else {
-                    return nil
-                }
-            }
-            */
+        }
+        
+        public init(allergy: Allergy.ID, proba: Proba) {
+            self.allergy = allergy
+            self.proba = proba
         }
     }
 }
