@@ -53,15 +53,6 @@ public struct Allergy: Codable, Hashable, Sendable {
     public struct AllergyProba: Codable, Hashable, Sendable  {
         public let allergy: Allergy.ID
         public var proba: Proba
-
-        public struct WithOriginal: Codable, Hashable, Sendable  {
-            public var allergyProba: Allergy.AllergyProba
-            public let original: Allergy.AllergyProba
-            
-            public func changed() -> Bool {
-                allergyProba != original
-            }
-        }
         
         public init(allergy: Allergy.ID, proba: Proba) {
             self.allergy = allergy
