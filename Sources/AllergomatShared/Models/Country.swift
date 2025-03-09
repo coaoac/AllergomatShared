@@ -106,9 +106,10 @@ public struct Country: Codable, Sendable {
 
 }
 
-
-
-public struct Country_Simple: Codable, Sendable {
+public struct Country_Simple: Codable, Sendable, Identifiable {
     public let name_en, name_se, flag, alpha2Code, alpha3Code, numCode, region: String
     public let isEU: Bool
+    public var id: Country.ID {
+        alpha2Code
+    }
 }

@@ -55,7 +55,11 @@ public enum Proba: String, Codable, Comparable, Hashable, Sendable {
     case low, medium, high, none
 }
 
-public enum Status: Int, Codable, Comparable, Sendable {
+public enum Status: Int, Codable, Comparable, Sendable, Identifiable {
+    public var id: Int {
+        rawValue
+    }
+    
     case approved = 8//computed
     case rejected = 7//computed
 
