@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Country: Codable {
+public struct Country: Codable, Sendable {
     public static let _cname = "Countries"
     public typealias ID = String
     public let _id: ID //alpha2
@@ -36,31 +36,31 @@ public struct Country: Codable {
     public let unionflag: String
 
     // MARK: Name
-    public struct Name: Codable {
+    public struct Name: Codable, Sendable {
         public let common: String
         public let official: String
         public let native: [String: Translation]
     }
 
     // MARK: Translation
-    public struct Translation: Codable {
+    public struct Translation: Codable, Sendable {
         public let official: String
         public let common: String
     }
 
     // MARK: Currency
-    public struct Currency: Codable {
+    public struct Currency: Codable, Sendable {
         public let name: String
         public let symbol: String
     }
 
     // MARK: Idd
-    public struct Idd: Codable {
+    public struct Idd: Codable, Sendable {
         public let root: String
         public let suffixes: [String]
     }
 
-    public enum Region: String, Codable {
+    public enum Region: String, Codable, Sendable {
         case africa = "Africa"
         case americas = "Americas"
         case antarctic = "Antarctic"
@@ -69,21 +69,21 @@ public struct Country: Codable {
         case oceania = "Oceania"
     }
 
-    public enum Status: String, Codable {
+    public enum Status: String, Codable, Sendable {
         case officially_assigned
         case user_assigned
     }
 
-    public enum Union: String, Codable {
+    public enum Union: String, Codable, Sendable {
         case none = ""
         case eu
     }
 
-    public struct CountryID: Codable {
+    public struct CountryID: Codable, Sendable {
         public let id: Country.ID
     }
 
-    public struct Simple: Codable, Hashable {
+    public struct Simple: Codable, Hashable, Sendable {
         public let _id: Country.ID
         public let english: String
         public let swedish: String
@@ -93,14 +93,14 @@ public struct Country: Codable {
             Simple(_id: "", english: "", swedish: "", flag: "")
         }
 
-        public struct List: Codable {
+        public struct List: Codable, Sendable {
             public let items: [Simple]
         }
     }
 
 
 
-    func simple() -> Simple {
+    public func simple() -> Simple {
         let translation = name.native["swe"]?.common ?? name.common
         return Country.Simple(_id: _id, english: name.common, swedish: translation, flag: flag)
     }
@@ -110,7 +110,7 @@ public struct Country: Codable {
 
 
 
-public struct Country_Simple: Codable {
+public struct Country_Simple: Codable, Sendable {
     public let name_en, name_se, flag, alpha2Code, alpha3Code, numCode, region: String
     public let isEU: Bool
 }

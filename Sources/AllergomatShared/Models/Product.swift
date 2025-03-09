@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Product: Codable, Equatable {
+public struct Product: Codable, Equatable, Sendable {
     public static let _cname = "Products"
     public typealias ID = String
 
@@ -13,38 +13,38 @@ public struct Product: Codable, Equatable {
     public var updated: Date
     public var dataSource: Source
 
-    public enum Source: String, Codable {
+    public enum Source: String, Codable, Sendable {
         case ica
         case coop
         case app
     }
 
-    public struct WithPicture: Codable {
+    public struct WithPicture: Codable, Sendable {
         public let product: Product
         public let picture: Picture?
     }
-    public struct EAN: Codable {
+    public struct EAN: Codable, Sendable {
         public let ean: ID
     }
 
-    public struct Ingredients: Codable {
+    public struct Ingredients: Codable, Sendable {
         public let ingredients: String
     }
 
-    public struct EAN_and_UserID: Codable {
+    public struct EAN_and_UserID: Codable, Sendable {
         public let ean: ID
         public let userID: User.ID?
     }
 
-    public struct EANs: Codable {
+    public struct EANs: Codable, Sendable {
         public let eans: [ID]
     }
 
-    public struct List: Codable {
+    public struct List: Codable, Sendable {
         public let items: [Product]
     }
 
-    public struct Extended: Codable {
+    public struct Extended: Codable, Sendable {
         public let product: Product
         public let ingredients: [Keyword]
     }
@@ -135,12 +135,12 @@ public struct Product: Codable, Equatable {
      */
 
 
-    public struct ID_RawIngredients: Codable {
+    public struct ID_RawIngredients: Codable, Sendable {
         public let id: Product.ID
         public let raw: String
     }
 
-    public struct Limit_String_ExcludedIds: Codable {
+    public struct Limit_String_ExcludedIds: Codable, Sendable {
         public let limit: Int
         public let string: String?
         public let excludedIds: [Product.ID]

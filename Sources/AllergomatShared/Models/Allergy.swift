@@ -24,7 +24,7 @@ public struct Allergy: Codable, Hashable, Sendable {
         }.first ?? Allergy.AllergyProba(allergy: self._id, proba: .none)
     }
 
-    public struct Reduce: Codable {
+    public struct Reduce: Codable, Sendable {
         public let allergy: Allergy
         public var active: Bool?
 
@@ -37,11 +37,11 @@ public struct Allergy: Codable, Hashable, Sendable {
         }
     }
 
-    public struct AllergyProba: Codable, Hashable {
+    public struct AllergyProba: Codable, Hashable, Sendable  {
         public let allergy: Allergy.ID
         public var proba: Proba
 
-        public struct WithOriginal: Codable, Hashable {
+        public struct WithOriginal: Codable, Hashable, Sendable  {
             public var allergyProba: Allergy.AllergyProba
             public let original: Allergy.AllergyProba
             

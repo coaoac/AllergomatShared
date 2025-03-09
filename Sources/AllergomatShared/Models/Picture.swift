@@ -6,7 +6,7 @@
 //
 
 import Foundation
-public struct Picture: Codable {
+public struct Picture: Codable, Sendable {
     public static let _cname = "Images"
     public typealias ID = String
     public let _id: ID
@@ -17,12 +17,12 @@ public struct Picture: Codable {
     public var product: Product.ID
     public var updated: Date
 
-    public enum DataType: String, Codable {
+    public enum DataType: String, Codable, Sendable {
         case jpeg = "image/jpeg"
         case png = "image/png"
     }
 
-    public enum DataEncoding: String, Codable {
+    public enum DataEncoding: String, Codable, Sendable  {
         case base64
     }
 
@@ -36,7 +36,7 @@ public struct Picture: Codable {
         self._id = product + (user ?? "")
     }
 
-    public struct PictureID: Codable {
+    public struct PictureID: Codable, Sendable {
         public let _id: ID
         public init(from _id: ID) {
             self._id = _id

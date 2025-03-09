@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct FError: Error, Identifiable, Codable {
+public struct FError: Error, Identifiable, Codable, Sendable {
     public let id: Reason
     public let source: Source
     public var code: Int = 500
@@ -118,7 +118,7 @@ public struct FError: Error, Identifiable, Codable {
 
     }
 
-    public struct ServerError: Codable {
+    public struct ServerError: Codable, Sendable {
         public let error: Bool
         public let reason: Reason
     }

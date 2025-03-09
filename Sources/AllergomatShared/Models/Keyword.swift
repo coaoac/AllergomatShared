@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Keyword: Codable, Hashable {
+public struct Keyword: Codable, Hashable, Sendable {
     public static let _cname = "Keywords"
     public typealias ID = String
     public let _id: ID // word
@@ -16,11 +16,11 @@ public struct Keyword: Codable, Hashable {
     public var allergies: [Allergy.AllergyProba] //by default if an allergy is not relevant it is not included
     public var updated: Date
 
-    public struct List: Codable {
+    public struct List: Codable, Sendable {
         public let items: [Keyword]
     }
 
-    public struct One: Codable {
+    public struct One: Codable, Sendable {
         public let name: Keyword.ID
     }
 /*
@@ -99,7 +99,7 @@ public struct Keyword: Codable, Hashable {
         }
     }
 */
-    public struct Limit_ExcludedIds_String: Codable {
+    public struct Limit_ExcludedIds_String: Codable, Sendable {
         public let limit: Int
         public let excludedIds: [Keyword.ID]
         public let string: String?

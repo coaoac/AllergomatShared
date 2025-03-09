@@ -12,7 +12,7 @@ public struct LocalizedString: Codable, Hashable, Sendable {
     public let se: String
 }
 
-public struct OK: Codable {
+public struct OK: Codable, Sendable {
     public let ok: Bool
 
     public init(_ ok: Bool) {
@@ -20,7 +20,7 @@ public struct OK: Codable {
     }
 }
 
-public enum Proba: String, Codable, Comparable, Hashable {
+public enum Proba: String, Codable, Comparable, Hashable, Sendable {
     public static func < (lhs: Proba, rhs: Proba) -> Bool {
         Proba.all().firstIndex(of: lhs) ?? 0 < Proba.all().firstIndex(of: rhs) ?? 0
     }

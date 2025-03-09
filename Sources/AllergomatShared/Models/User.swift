@@ -8,7 +8,7 @@
 //import Authentication
 import Foundation
 
-public struct User: Codable {
+public struct User: Codable, Sendable {
     public static let _cname = "Users"
     public typealias ID = String
     public let _id: ID
@@ -37,7 +37,7 @@ public struct User: Codable {
              joined: joined)
     }
 
-    public struct Credentials: Codable {
+    public struct Credentials: Codable, Sendable {
         public let name: String?
         public let email: String?
         public let realUserStatus: Int
@@ -101,16 +101,16 @@ public struct User: Codable {
         }
     }
     
-    public enum Source: String, Codable {
+    public enum Source: String, Codable, Sendable {
         case apple
     }
     
-    public struct WithToken: Codable {
+    public struct WithToken: Codable, Sendable {
         public let user: User
         public let token: Token
     }
 
-    public struct Token: Codable, Equatable {
+    public struct Token: Codable, Equatable, Sendable {
         public static let _cname = "Tokens"
         public typealias ID = String
         public let _id: ID
@@ -120,7 +120,7 @@ public struct User: Codable {
     }
 
 
-    public struct Device: Codable {
+    public struct Device: Codable, Sendable {
         public let model: String
         public let systemName: String
         public let systemVersion: String
