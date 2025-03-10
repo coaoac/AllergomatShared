@@ -21,11 +21,11 @@ public struct Transaction: Codable, Sendable {
     public let source: Source
     
     public enum Nature: String, Codable, Sendable {
-        case top, read, update, insert, delete, login, logout, search, history
+        case top, read, update, insert, delete, login, logout, search, history, googleShopping
     }
 
     public enum Source: String, Codable, Sendable {
-        case app, web
+        case app, web, server
     }
     
     public init(_id: ID, userID: String?, country: String?, userAgent: String?, collection: String, item: String?, nature: Nature, time: Date, source: Source) {
