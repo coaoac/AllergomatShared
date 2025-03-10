@@ -12,8 +12,9 @@ public struct Product: Codable, Equatable, Sendable {
     public var image: Picture.ID?
     public var updated: Date
     public var dataSource: Source
+    public var reviewed: Bool = false
     
-    public init(_id: ID, name: String, producer: String? = nil, origin: Country.ID? = nil, ingredients: String? = nil, image: Picture.ID? = nil, updated: Date, dataSource: Source) {
+    public init(_id: ID, name: String, producer: String? = nil, origin: Country.ID? = nil, ingredients: String? = nil, image: Picture.ID? = nil, updated: Date, dataSource: Source, reviewed: Bool = false) {
         self._id = _id
         self.name = name
         self.producer = producer
@@ -22,6 +23,7 @@ public struct Product: Codable, Equatable, Sendable {
         self.image = image
         self.updated = updated
         self.dataSource = dataSource
+        self.reviewed = reviewed
     }
 
     public enum Source: String, Codable, Sendable {
