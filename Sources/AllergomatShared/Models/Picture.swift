@@ -17,7 +17,7 @@ public struct Picture: Codable, Sendable {
     public var product: Product.ID
     public var updated: Date
 
-    public enum DataType: String, Codable {
+    public enum DataType: String, Codable,  Sendable {
         case jpeg = "image/jpeg"
         case png = "image/png"
         case gif = "image/gif"
