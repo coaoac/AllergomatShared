@@ -26,9 +26,13 @@ public struct Product: Codable, Equatable, Sendable {
         self.reviewed = reviewed
     }
 
-    public enum Source: String, Codable, Sendable {
+    public enum Source: String, Codable {
         case ica
         case coop
+        case openFoodFacts
+        case googleShopping
+        case openAI
+        case mistral
         case app
     }
 
