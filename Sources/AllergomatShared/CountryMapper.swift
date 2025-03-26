@@ -1,9 +1,9 @@
 import Foundation
 
 /// Utility class for mapping country names to ISO 3166-1 alpha-2 codes
-struct CountryMapper {
+public struct CountryMapper {
     /// Maps country name to ISO 3166-1 alpha-2 code
-    static func mapCountryToISOCode(_ countryText: String) -> String? {
+    public static func mapCountryToISOCode(_ countryText: String) -> String? {
         let text = countryText.lowercased()
         
         // Europe
