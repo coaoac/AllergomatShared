@@ -29,10 +29,7 @@ public struct Product: Codable, Equatable, Sendable {
     public enum Source: String, Codable, Sendable {
         case ica
         case coop
-        case openFoodFacts
-        case googleShopping
-        case openAI
-        case mistral
+        case ai
         case app
     }
 
