@@ -4,7 +4,7 @@ public struct Product: Codable, Equatable, Sendable {
     public static let _cname = "Products"
     public typealias ID = String
 
-    public let _id: ID // EAN
+    public let _id: ID  // EAN
     public var name: String
     public var producer: String?
     public var origin: Country.ID?
@@ -13,8 +13,12 @@ public struct Product: Codable, Equatable, Sendable {
     public var updated: Date
     public var dataSource: Source
     public var reviewed: Date?
-    
-    public init(_id: ID, name: String, producer: String? = nil, origin: Country.ID? = nil, ingredients: String? = nil, image: Picture.ID? = nil, updated: Date, dataSource: Source, reviewed: Bool = false) {
+
+    public init(
+        _id: ID, name: String, producer: String? = nil, origin: Country.ID? = nil,
+        ingredients: String? = nil, image: Picture.ID? = nil, updated: Date, dataSource: Source,
+        reviewed: Date? = nil
+    ) {
         self._id = _id
         self.name = name
         self.producer = producer
@@ -36,7 +40,7 @@ public struct Product: Codable, Equatable, Sendable {
     public struct WithPicture: Codable, Sendable {
         public let product: Product
         public let picture: Picture?
-        
+
         public init(product: Product, picture: Picture?) {
             self.product = product
             self.picture = picture
@@ -87,7 +91,7 @@ public struct Product: Codable, Equatable, Sendable {
             self.ingredients = ingredients
         }
     }
-    
+
     public struct ID_RawIngredients: Codable, Sendable {
         public let id: Product.ID
         public let raw: String
@@ -108,5 +112,3 @@ public struct Product: Codable, Equatable, Sendable {
         }
     }
 }
-
-
