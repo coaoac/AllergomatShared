@@ -12,7 +12,7 @@ public struct Product: Codable, Equatable, Sendable {
     public var image: Picture.ID?
     public var updated: Date
     public var dataSource: Source
-    public var reviewed: Bool = false
+    public var reviewed: Date?
     
     public init(_id: ID, name: String, producer: String? = nil, origin: Country.ID? = nil, ingredients: String? = nil, image: Picture.ID? = nil, updated: Date, dataSource: Source, reviewed: Bool = false) {
         self._id = _id
