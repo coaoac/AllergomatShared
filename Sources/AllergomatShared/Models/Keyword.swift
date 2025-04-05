@@ -18,7 +18,7 @@ public struct Keyword: Codable, Hashable, Sendable, Identifiable {
     public var id: String {
         return _id
     }
-    public let language: Language
+    public let language: Language?
     
     public init(_id: ID, isIngredient: Bool, allergies: [Allergy.AllergyProba], updated: Date, language: Language) {
         self._id = _id
