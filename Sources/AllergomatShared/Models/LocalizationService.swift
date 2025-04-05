@@ -85,12 +85,12 @@ public struct LocalizationService {
         let availableLanguages = languages.isEmpty ? defaultLanguages : languages
         
         // Primary is Swedish if available, otherwise the first language
-        let primary = availableLanguages.contains(Language.swedish) ? Language.swedish : availableLanguages[0]
+        let primary = availableLanguages.contains(.swedish) ? .swedish : availableLanguages[0]
         
         // Fallback is English if available and not the primary, otherwise the second language if exists
         let fallback: Language?
-        if primary != Language.english && availableLanguages.contains(Language.english) {
-            fallback = Language.english
+        if primary != .english && availableLanguages.contains(.english) {
+            fallback = .english
         } else if availableLanguages.count > 1 && availableLanguages[0] != availableLanguages[1] {
             fallback = availableLanguages[1]
         } else {
@@ -103,7 +103,7 @@ public struct LocalizationService {
     /// Get the best available localized string from a map based on preferred languages
     public static func getBestLocalizedString(
         from localizedStrings: [Language: String],
-        preferredLanguages: [Language] = [Language.swedish, Language.english]
+        preferredLanguages: [Language] = defaultLanguagePreference()
     ) -> String? {
         for language in preferredLanguages {
             if let value = localizedStrings[language], !value.isEmpty {
@@ -148,6 +148,19 @@ public struct LocalizationService {
     public static func mapCountryToISOCode(_ countryText: String) -> String? {
         let text = countryText.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         
+        return CountryCodeMapper.mapCountryToCode(text)
+    }
+}
+
+// MARK: - Country Code Mapping Helper
+
+/// Helper enum for mapping country names to ISO codes
+private enum CountryCodeMapper {
+    
+    /// Maps a country name to its ISO 3166-1 alpha-2 code
+    /// - Parameter text: Lowercased country name text
+    /// - Returns: ISO country code if recognized
+    static func mapCountryToCode(_ text: String) -> String? {
         // Europe
         if text.contains("albania") { return "AL" }
         if text.contains("andorra") { return "AD" }
@@ -204,26 +217,166 @@ public struct LocalizationService {
             return "GB"
         }
         
+        // Africa
+        if text.contains("algeria") { return "DZ" }
+        if text.contains("angola") { return "AO" }
+        if text.contains("benin") { return "BJ" }
+        if text.contains("botswana") { return "BW" }
+        if text.contains("burkina faso") { return "BF" }
+        if text.contains("burundi") { return "BI" }
+        if text.contains("cape verde") || text.contains("cabo verde") { return "CV" }
+        if text.contains("cameroon") { return "CM" }
+        if text.contains("central african republic") { return "CF" }
+        if text.contains("chad") { return "TD" }
+        if text.contains("comoros") { return "KM" }
+        if text.contains("congo") { return "CG" }
+        if text.contains("djibouti") { return "DJ" }
+        if text.contains("egypt") { return "EG" }
+        if text.contains("equatorial guinea") { return "GQ" }
+        if text.contains("eritrea") { return "ER" }
+        if text.contains("ethiopia") { return "ET" }
+        if text.contains("gabon") { return "GA" }
+        if text.contains("gambia") { return "GM" }
+        if text.contains("ghana") { return "GH" }
+        if text.contains("guinea") { return "GN" }
+        if text.contains("guinea-bissau") { return "GW" }
+        if text.contains("kenya") { return "KE" }
+        if text.contains("lesotho") { return "LS" }
+        if text.contains("liberia") { return "LR" }
+        if text.contains("libya") { return "LY" }
+        if text.contains("madagascar") { return "MG" }
+        if text.contains("malawi") { return "MW" }
+        if text.contains("mali") { return "ML" }
+        if text.contains("mauritania") { return "MR" }
+        if text.contains("mauritius") { return "MU" }
+        if text.contains("morocco") || text.contains("maroc") { return "MA" }
+        if text.contains("mozambique") { return "MZ" }
+        if text.contains("namibia") { return "NA" }
+        if text.contains("niger") { return "NE" }
+        if text.contains("nigeria") { return "NG" }
+        if text.contains("rwanda") { return "RW" }
+        if text.contains("saint helena") { return "SH" }
+        if text.contains("sao tome") || text.contains("principe") { return "ST" }
+        if text.contains("senegal") { return "SN" }
+        if text.contains("seychelles") { return "SC" }
+        if text.contains("sierra leone") { return "SL" }
+        if text.contains("somalia") { return "SO" }
+        if text.contains("south africa") { return "ZA" }
+        if text.contains("south sudan") { return "SS" }
+        if text.contains("sudan") { return "SD" }
+        if text.contains("swaziland") { return "SZ" }
+        if text.contains("tanzania") { return "TZ" }
+        if text.contains("togo") { return "TG" }
+        if text.contains("tunisia") { return "TN" }
+        if text.contains("uganda") { return "UG" }
+        if text.contains("zambia") { return "ZM" }
+        if text.contains("zimbabwe") { return "ZW" }
+        
+        // Asia
+        if text.contains("afghanistan") { return "AF" }
+        if text.contains("armenia") { return "AM" }
+        if text.contains("azerbaijan") { return "AZ" }
+        if text.contains("bangladesh") { return "BD" }
+        if text.contains("bhutan") { return "BT" }
+        if text.contains("brunei") { return "BN" }
+        if text.contains("cambodia") { return "KH" }
+        if text.contains("china") || text.contains("kina") { return "CN" }
+        if text.contains("india") || text.contains("indien") { return "IN" }
+        if text.contains("indonesia") { return "ID" }
+        if text.contains("iran") { return "IR" }
+        if text.contains("iraq") { return "IQ" }
+        if text.contains("israel") { return "IL" }
+        if text.contains("japan") { return "JP" }
+        if text.contains("jordan") { return "JO" }
+        if text.contains("kazakhstan") { return "KZ" }
+        if text.contains("kuwait") { return "KW" }
+        if text.contains("kyrgyzstan") { return "KG" }
+        if text.contains("laos") { return "LA" }
+        if text.contains("lebanon") { return "LB" }
+        if text.contains("malaysia") { return "MY" }
+        if text.contains("maldives") { return "MV" }
+        if text.contains("mongolia") { return "MN" }
+        if text.contains("myanmar") || text.contains("burma") { return "MM" }
+        if text.contains("nepal") { return "NP" }
+        if text.contains("north korea") { return "KP" }
+        if text.contains("oman") { return "OM" }
+        if text.contains("pakistan") { return "PK" }
+        if text.contains("palestine") { return "PS" }
+        if text.contains("philippines") { return "PH" }
+        if text.contains("qatar") { return "QA" }
+        if text.contains("saudi arabia") { return "SA" }
+        if text.contains("singapore") { return "SG" }
+        if text.contains("south korea") { return "KR" }
+        if text.contains("sri lanka") { return "LK" }
+        if text.contains("syria") { return "SY" }
+        if text.contains("taiwan") { return "TW" }
+        if text.contains("tajikistan") { return "TJ" }
+        if text.contains("thailand") { return "TH" }
+        if text.contains("timor-leste") { return "TL" }
+        if text.contains("turkmenistan") { return "TM" }
+        if text.contains("united arab emirates") { return "AE" }
+        if text.contains("uzbekistan") { return "UZ" }
+        if text.contains("vietnam") { return "VN" }
+        if text.contains("yemen") { return "YE" }
+        
         // North America
+        if text.contains("antigua") || text.contains("barbuda") { return "AG" }
+        if text.contains("bahamas") { return "BS" }
+        if text.contains("barbados") { return "BB" }
+        if text.contains("belize") { return "BZ" }
         if text.contains("canada") { return "CA" }
+        if text.contains("costa rica") { return "CR" }
+        if text.contains("cuba") { return "CU" }
+        if text.contains("dominica") { return "DM" }
+        if text.contains("dominican republic") { return "DO" }
+        if text.contains("el salvador") { return "SV" }
+        if text.contains("grenada") { return "GD" }
+        if text.contains("guatemala") { return "GT" }
+        if text.contains("haiti") { return "HT" }
+        if text.contains("honduras") { return "HN" }
+        if text.contains("jamaica") { return "JM" }
         if text.contains("mexico") { return "MX" }
+        if text.contains("nicaragua") { return "NI" }
+        if text.contains("panama") { return "PA" }
+        if text.contains("saint kitts") || text.contains("nevis") { return "KN" }
+        if text.contains("saint lucia") { return "LC" }
+        if text.contains("saint vincent") || text.contains("grenadines") { return "VC" }
+        if text.contains("trinidad") || text.contains("tobago") { return "TT" }
         if text.contains("usa") || text.contains("united states") || text.contains("america") {
             return "US"
         }
         
-        // Asia
-        if text.contains("china") || text.contains("kina") { return "CN" }
-        if text.contains("japan") { return "JP" }
-        if text.contains("india") || text.contains("indien") { return "IN" }
-        if text.contains("south korea") { return "KR" }
-        if text.contains("thailand") { return "TH" }
-        
-        // Other common countries
-        if text.contains("australia") { return "AU" }
+        // South America
+        if text.contains("argentina") { return "AR" }
+        if text.contains("bolivia") { return "BO" }
         if text.contains("brazil") || text.contains("brasil") { return "BR" }
-        if text.contains("new zealand") { return "NZ" }
+        if text.contains("chile") { return "CL" }
+        if text.contains("colombia") { return "CO" }
+        if text.contains("ecuador") { return "EC" }
+        if text.contains("french guiana") { return "GF" }
+        if text.contains("guyana") { return "GY" }
+        if text.contains("paraguay") { return "PY" }
+        if text.contains("peru") { return "PE" }
+        if text.contains("suriname") { return "SR" }
+        if text.contains("uruguay") { return "UY" }
+        if text.contains("venezuela") { return "VE" }
         
-        // For a more comprehensive implementation, add more countries as needed
+        // Oceania
+        if text.contains("australia") { return "AU" }
+        if text.contains("fiji") { return "FJ" }
+        if text.contains("kiribati") { return "KI" }
+        if text.contains("marshall islands") { return "MH" }
+        if text.contains("micronesia") { return "FM" }
+        if text.contains("nauru") { return "NR" }
+        if text.contains("new zealand") { return "NZ" }
+        if text.contains("palau") { return "PW" }
+        if text.contains("papua new guinea") { return "PG" }
+        if text.contains("samoa") { return "WS" }
+        if text.contains("solomon islands") { return "SB" }
+        if text.contains("tonga") { return "TO" }
+        if text.contains("tuvalu") { return "TV" }
+        if text.contains("vanuatu") { return "VU" }
+
         return nil
     }
 }
