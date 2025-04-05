@@ -8,9 +8,9 @@
 import Foundation
 
 // Enumération pour les langues supportées
-public enum Language: String, Codable, Sendable {
-    case swedish = "sv" // 1st default
-    case english = "en" // 2nd default
+public enum Language: String, Codable, Sendable, CaseIterable {
+    case english = "en" // 1st default
+    case swedish = "sv" // 2st default
     case french = "fr" // 3rd default
     case german = "de"
     case italian = "it"
@@ -72,6 +72,10 @@ public enum Language: String, Codable, Sendable {
         case .ukrainian: return "Ukrainian"
         case .chinese: return "Chinese"
         }
+    }
+    
+    public static func defaultLanguage() -> Language {
+        return .english
     }
 }
 
