@@ -80,77 +80,14 @@ public enum Language: String, Codable, Sendable, CaseIterable {
 }
 
 public struct LocalizedString: Codable, Hashable, Sendable {
-    public let en: String
-    public let se: String
-    public let de: String?
-    public let fr: String?
-    public let it: String?
-    public let nl: String?
-    public let pl: String?
-    public let pt: String?
-    public let es: String?
-    public let da: String?
-    public let no: String?
-    public let sv: String?
-    public let tr: String?
-    public let hu: String?
-    public let ro: String?
-    public let bg: String?
-    public let cs: String?
-    public let el: String?
-    public let ja: String?
-    public let ko: String?
-    public let ms: String?
-    public let th: String?
-    public let vi: String?
-    public let ar: String?
-    public let he: String?
-    public let id: String?
-    public let ru: String?
-    public let sr: String?
-    public let uk: String?
-    public let zh: String?
+    public let localizations: [Language: String]
 
-    public init(
-        en: String, se: String, de: String? = nil, fr: String? = nil, it: String? = nil,
-        nl: String? = nil, pl: String? = nil, pt: String? = nil, es: String? = nil,
-        da: String? = nil, no: String? = nil, sv: String? = nil, tr: String? = nil,
-        hu: String? = nil, ro: String? = nil, bg: String? = nil, cs: String? = nil,
-        el: String? = nil, ja: String? = nil, ko: String? = nil, ms: String? = nil,
-        th: String? = nil, vi: String? = nil, ar: String? = nil, he: String? = nil,
-        id: String? = nil, ru: String? = nil, sr: String? = nil, uk: String? = nil,
-        zh: String? = nil
-    ) {
-        self.en = en
-        self.se = se
-        self.de = de
-        self.fr = fr
-        self.it = it
-        self.nl = nl
-        self.pl = pl
-        self.pt = pt
-        self.es = es
-        self.da = da
-        self.no = no
-        self.sv = sv
-        self.tr = tr
-        self.hu = hu
-        self.ro = ro
-        self.bg = bg
-        self.cs = cs
-        self.el = el
-        self.ja = ja
-        self.ko = ko
-        self.ms = ms
-        self.th = th
-        self.vi = vi
-        self.ar = ar
-        self.he = he
-        self.id = id
-        self.ru = ru
-        self.sr = sr
-        self.uk = uk
-        self.zh = zh
+    public init(localizations: [Language: String]) {
+        self.localizations = localizations
+    }
+
+    public func localized(language: Language) -> String? {
+        return localizations[language]
     }
 }
 
