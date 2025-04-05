@@ -21,7 +21,6 @@ public struct User: Codable, Sendable {
     public var allergies: [Allergy.ID]?
     public var products: [Product.ID]?
     public var ingredients: [Keyword.ID]?
-    public var language: Language?
     public let joined: Date
 
     public init(
@@ -191,7 +190,6 @@ public struct User: Codable, Sendable {
         public var email: String?
         public let realUserStatus: Int
         public var role: User.Role
-        public var language: Language?
         public var experience: Int
         public var payments: [User.Payment]
         public var allergies: [Allergy.ID]?
@@ -203,7 +201,7 @@ public struct User: Codable, Sendable {
             _id: ID, name: String? = nil, email: String? = nil, realUserStatus: Int,
             role: User.Role, experience: Int, payments: [User.Payment],
             allergies: [Allergy.ID]? = nil, products: [Product.ID]? = nil,
-            ingredients: [Keyword.ID]? = nil, token: Token.ID, language: Language?
+            ingredients: [Keyword.ID]? = nil, token: Token.ID
         ) {
             self._id = _id
             self.name = name
@@ -216,7 +214,6 @@ public struct User: Codable, Sendable {
             self.products = products
             self.ingredients = ingredients
             self.token = token
-            self.language = language
         }
 
         public static func from(user: User, payments: [Payment], token: Token) -> BasicUserInfo {
@@ -231,8 +228,7 @@ public struct User: Codable, Sendable {
                 allergies: user.allergies,
                 products: user.products,
                 ingredients: user.ingredients,
-                token: token._id,
-                language: user.language)
+                token: token._id)
         }
 
         public static func == (lhs: BasicUserInfo, rhs: BasicUserInfo) -> Bool {
