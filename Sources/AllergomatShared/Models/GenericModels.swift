@@ -40,7 +40,7 @@ public enum Language: String, Codable, Sendable, CaseIterable {
     case chinese = "zh"
 
     // Pour obtenir le nom de la langue en format lisible
-    var displayName: String {
+    public func displayName() -> String {
         switch self {
         case .english: return "English"
         case .swedish: return "Swedish"
