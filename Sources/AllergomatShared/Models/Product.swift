@@ -39,6 +39,8 @@ public struct Product: Codable, Equatable, Sendable {
         case coop
         case ai
         case app
+        case server
+        case manual
     }
 
     public struct WithPicture: Codable, Sendable {
