@@ -21,7 +21,7 @@ public struct Transaction: Codable, Sendable {
     public let source: Source
     
     public enum Nature: String, Codable, Sendable {
-        case top, read, update, insert, delete, login, logout, search, history, googleShopping
+        case top, read, update, insert, delete, login, logout, search, history, ai
     }
 
     public enum Source: String, Codable, Sendable {

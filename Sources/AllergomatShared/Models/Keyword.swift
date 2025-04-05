@@ -18,12 +18,14 @@ public struct Keyword: Codable, Hashable, Sendable, Identifiable {
     public var id: String {
         return _id
     }
+    public let language: Language
     
-    public init(_id: ID, isIngredient: Bool, allergies: [Allergy.AllergyProba], updated: Date) {
+    public init(_id: ID, isIngredient: Bool, allergies: [Allergy.AllergyProba], updated: Date, language: Language) {
         self._id = _id
         self.isIngredient = isIngredient
         self.allergies = allergies
         self.updated = updated
+        self.language = language
     }
 
     public struct List: Codable, Sendable {
