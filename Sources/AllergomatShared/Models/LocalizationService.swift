@@ -137,7 +137,7 @@ public struct LocalizationService {
             localizedStrings[.english] = fallback
         }
         
-        return LocalizedString(localizations: localizedStrings)
+        return LocalizedString(en: english, sv: swedish)
     }
     
     // MARK: - Country Name Mapping

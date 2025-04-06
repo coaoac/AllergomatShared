@@ -80,14 +80,21 @@ public enum Language: String, Codable, Sendable, CaseIterable {
 }
 
 public struct LocalizedString: Codable, Hashable, Sendable {
-    public let localizations: [Language: String]
+    public let en: String?
+    public let sv: String?
+    
 
-    public init(localizations: [Language: String]) {
-        self.localizations = localizations
+    public init(en: String?, sv: String?) {
+        self.en = en
+        self.sv = sv
     }
 
     public func localized(language: Language) -> String? {
-        return localizations[language]
+        switch language {
+        case .english: return en
+        case .swedish: return sv
+        default: return nil
+        }
     }
 }
 
