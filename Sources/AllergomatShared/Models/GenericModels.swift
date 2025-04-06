@@ -80,8 +80,8 @@ public enum Language: String, Codable, Sendable, CaseIterable {
 }
 
 public struct LocalizedString: Codable, Hashable, Sendable {
-    public let en: String?
-    public let sv: String?
+    public var en: String?
+    public var sv: String?
     
 
     public init(en: String?, sv: String?) {
