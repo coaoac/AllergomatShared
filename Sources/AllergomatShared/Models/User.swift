@@ -261,3 +261,30 @@ public struct User: Codable, Sendable {
         }
     }
 }
+
+public struct Review: Codable, Sendable {
+    public static let _cname = "Reviews"
+    public typealias ID = String
+    public let _id: ID
+    public let user: User.ID
+    public let product: Product.ID?
+    public let ingredient: Keyword.ID?
+    public let allergy: Allergy.ID?
+    public let date: Date
+    public let text: String?
+    public let approved: Bool
+
+    public init(
+        _id: ID, user: User.ID, product: Product.ID?, ingredient: Keyword.ID? = nil, allergy: Allergy.ID? = nil,
+        date: Date, text: String?, approved: Bool
+    ) {
+        self._id = _id
+        self.user = user
+        self.product = product
+        self.ingredient = ingredient
+        self.allergy = allergy
+        self.date = date
+        self.text = text
+        self.approved = approved
+    }
+}

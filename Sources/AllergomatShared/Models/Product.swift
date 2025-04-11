@@ -15,7 +15,6 @@ public struct Product: Codable, Equatable, Sendable {
     public var updated: Date
     public var dataSource: Source
     public var reviewed: Date?
-    public var userReviews: UserReviews?
 
     public init(
         _id: ID, name: String, producer: String? = nil, origin: Country.ID? = nil,
@@ -115,15 +114,6 @@ public struct Product: Codable, Equatable, Sendable {
             self.limit = limit
             self.string = string
             self.excludedIds = excludedIds
-        }
-    }
-
-    public struct UserReviews: Codable, Sendable, Equatable {
-        public var approved: [User.ID]
-        public var rejected: [User.ID]
-        public init(approved: [User.ID], rejected: [User.ID]) {
-            self.approved = approved
-            self.rejected = rejected
         }
     }
 }
