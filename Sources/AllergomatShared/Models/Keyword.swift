@@ -7,30 +7,32 @@
 //
 
 import Foundation
+import Localizer
 
 public struct Keyword: Codable, Hashable, Sendable, Identifiable {
     public static let _cname = "Keywords"
     public typealias ID = String
-    public let _id: ID // word
+    public let _id: ID  // word
     public var isIngredient: Bool
-    public var allergies: [Allergy.AllergyProba] //by default if an allergy is not relevant it is not included
+    public var allergies: [Allergy.AllergyProba]  //by default if an allergy is not relevant it is not included
     public var updated: Date
     public var id: String {
         return _id
     }
-    public let language: Language?
-    
-    public init(_id: ID, isIngredient: Bool, allergies: [Allergy.AllergyProba], updated: Date, language: Language) {
+
+    public init(
+        _id: ID, isIngredient: Bool, allergies: [Allergy.AllergyProba], updated: Date,
+        language: Language
+    ) {
         self._id = _id
         self.isIngredient = isIngredient
         self.allergies = allergies
         self.updated = updated
-        self.language = language
     }
 
     public struct List: Codable, Sendable {
         public let items: [Keyword]
-        
+
         public init(items: [Keyword]) {
             self.items = items
         }
@@ -38,7 +40,7 @@ public struct Keyword: Codable, Hashable, Sendable, Identifiable {
 
     public struct One: Codable, Sendable {
         public let name: Keyword.ID
-        
+
         public init(name: Keyword.ID) {
             self.name = name
         }
@@ -48,7 +50,7 @@ public struct Keyword: Codable, Hashable, Sendable, Identifiable {
         public let limit: Int
         public let excludedIds: [Keyword.ID]
         public let string: String?
-        
+
         public init(limit: Int, excludedIds: [Keyword.ID], string: String?) {
             self.limit = limit
             self.excludedIds = excludedIds
@@ -92,19 +94,22 @@ extension Keyword: Equatable {
         lhs._id == rhs._id
             && lhs.isIngredient == rhs.isIngredient
             && lhs.allergies.reduce(true) { result, nextAllergyProba in
-                if let rAllergyProba = rhs.allergies.first(where: { $0.allergy == nextAllergyProba.allergy }) {
+                if let rAllergyProba = rhs.allergies.first(where: {
+                    $0.allergy == nextAllergyProba.allergy
+                }) {
                     return result && rAllergyProba.proba == nextAllergyProba.proba
                 } else {
                     return false
                 }
             }
             && rhs.allergies.reduce(true) { result, nextAllergyProba in
-                if let lAllergyProba = lhs.allergies.first(where: { $0.allergy == nextAllergyProba.allergy }) {
+                if let lAllergyProba = lhs.allergies.first(where: {
+                    $0.allergy == nextAllergyProba.allergy
+                }) {
                     return result && lAllergyProba.proba == nextAllergyProba.proba
                 } else {
                     return false
                 }
-        }
+            }
     }
 }
-

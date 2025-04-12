@@ -1,4 +1,5 @@
 import Foundation
+import Localizer
 
 /// Centralized service for handling language, country and localization functionality
 public struct LocalizationService {
@@ -15,45 +16,46 @@ public struct LocalizationService {
     /// Returns a default language preference order
     /// - Returns: Array of languages in preferred order
     public static func defaultLanguagePreference() -> [Language] {
-        return [.swedish, .english, .german, .french]
+        return [.sv, .en]
     }
-    
+/*
     // MARK: - Country Codes
-    
+
+
     /// Returns the country code associated with a language
     /// - Parameter language: The language to get the country code for
     /// - Returns: The two-letter ISO 3166-1 alpha-2 country code
     public static func countryCode(for language: Language) -> String {
         switch language {
-        case .english: return "GB"
-        case .swedish: return "SE"
-        case .german: return "DE"
-        case .french: return "FR"
-        case .italian: return "IT"
-        case .spanish: return "ES"
-        case .portuguese: return "PT"
-        case .dutch: return "NL"
-        case .polish: return "PL"
-        case .danish: return "DK"
-        case .norwegian: return "NO"
-        case .russian: return "RU"
-        case .japanese: return "JP"
-        case .korean: return "KR"
-        case .chinese: return "CN"
-        case .arabic: return "AE"
-        case .turkish: return "TR"
-        case .greek: return "GR"
-        case .hebrew: return "IL"
-        case .czech: return "CZ"
-        case .hungarian: return "HU"
-        case .romanian: return "RO"
-        case .bulgarian: return "BG"
-        case .ukrainian: return "UA"
-        case .thai: return "TH"
-        case .vietnamese: return "VN"
-        case .indonesian: return "ID"
-        case .malay: return "MY"
-        case .serbian: return "RS"
+        case .en: return "GB"
+        case .sv: return "SE"
+        case .de: return "DE"
+        case .fr: return "FR"
+        case .it: return "IT"
+        case .es: return "ES"
+        case .pt: return "PT"
+        case .nl: return "NL"
+        case .pl: return "PL"
+        case .dk: return "DK"
+        case .no: return "NO"
+        case .ru: return "RU"
+        case .jp: return "JP"
+        case .kr: return "KR"
+        case .cn: return "CN"
+        case .ae: return "AE"
+        case .tr: return "TR"
+        case .gr: return "GR"
+        case .il: return "IL"
+        case .cz: return "CZ"
+        case .hu: return "HU"
+        case .ro: return "RO"
+        case .bg: return "BG"
+        case .ua: return "UA"
+        case .th: return "TH"
+        case .vn: return "VN"
+        case .id: return "ID"
+        case .my: return "MY"
+        case .rs: return "RS"
         }
     }
     
@@ -81,16 +83,16 @@ public struct LocalizationService {
     
     /// Get the primary and fallback languages from a provided list
     public static func getPrimaryAndFallback(from languages: [Language]) -> (primary: Language, fallback: Language?) {
-        let defaultLanguages = [Language.swedish, Language.english]
+        let defaultLanguages = [Language.sv, Language.en]
         let availableLanguages = languages.isEmpty ? defaultLanguages : languages
         
         // Primary is Swedish if available, otherwise the first language
-        let primary = availableLanguages.contains(.swedish) ? .swedish : availableLanguages[0]
+        let primary = availableLanguages.contains(.sv) ? .sv : availableLanguages[0]
         
         // Fallback is English if available and not the primary, otherwise the second language if exists
         let fallback: Language?
-        if primary != .english && availableLanguages.contains(.english) {
-            fallback = .english
+        if primary != .en && availableLanguages.contains(.en) {
+            fallback = .en
         } else if availableLanguages.count > 1 && availableLanguages[0] != availableLanguages[1] {
             fallback = availableLanguages[1]
         } else {
@@ -124,22 +126,22 @@ public struct LocalizationService {
         var localizedStrings = [Language: String]()
         
         if let swedish = swedish, !swedish.isEmpty {
-            localizedStrings[.swedish] = swedish
+            localizedStrings[.sv] = swedish
         }
         
         if let english = english, !english.isEmpty {
-            localizedStrings[.english] = english
+            localizedStrings[.en] = english
         }
         
         // If neither is available but we have a fallback, use it for both
         if localizedStrings.isEmpty, let fallback = fallback, !fallback.isEmpty {
-            localizedStrings[.swedish] = fallback
-            localizedStrings[.english] = fallback
+            localizedStrings[.sv] = fallback
+            localizedStrings[.en] = fallback
         }
         
         return LocalizedString(en: english, sv: swedish)
     }
-    
+    */
     // MARK: - Country Name Mapping
     
     /// Maps a country name to ISO 3166-1 alpha-2 code

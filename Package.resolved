@@ -1,0 +1,15 @@
+{
+  "originHash" : "e207f0c523a6c40d38394caeaff773876d4acd82d10b26f0c6422dbbcfefae15",
+  "pins" : [
+    {
+      "identity" : "localizer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/MihaelIsaev/Localizer.git",
+      "state" : {
+        "revision" : "6fa620dce9c52d2aab1aca9348f9d8427cfde509",
+        "version" : "1.0.2"
+      }
+    }
+  ],
+  "version" : 3
+}

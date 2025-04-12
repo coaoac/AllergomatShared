@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Localizer
 extension String {
 
     public init(localizedString: LocalizedString, language: Language) {

@@ -1,11 +1,12 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Amine Chaouki on 2020-08-29.
 //
 
 import Foundation
+
 public struct Picture: Codable, Sendable {
     public static let _cname = "Images"
     public typealias ID = String
@@ -17,18 +18,21 @@ public struct Picture: Codable, Sendable {
     public var product: Product.ID
     public var updated: Date
 
-    public enum DataType: String, Codable,  Sendable {
+    public enum DataType: String, Codable, Sendable {
         case jpeg = "image/jpeg"
         case png = "image/png"
         case gif = "image/gif"
         case unknown = "application/octet-stream"
     }
 
-    public enum DataEncoding: String, Codable, Sendable  {
+    public enum DataEncoding: String, Codable, Sendable {
         case base64
     }
 
-    public init(user: User.ID?, product: Product.ID, data: Data, dataType: DataType, dataEncoding: DataEncoding, updated: Date) {
+    public init(
+        user: User.ID?, product: Product.ID, data: Data, dataType: DataType,
+        dataEncoding: DataEncoding, updated: Date
+    ) {
         self.data = data
         self.updated = updated
         self.user = user

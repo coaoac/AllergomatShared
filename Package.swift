@@ -11,11 +11,18 @@ let package = Package(
             name: "AllergomatShared",
             targets: ["AllergomatShared"]),
     ],
+    dependencies: [
+        // 💧 A server-side Swift web framework.
+        .package(url: "https://github.com/MihaelIsaev/Localizer.git", .upToNextMajor(from: "1.0.2")),
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "AllergomatShared"),
+            name: "AllergomatShared",
+            dependencies: [
+                .product(name: "Localizer", package: "Localizer"),
+            ])
 
     ]
 )

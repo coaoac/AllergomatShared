@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Localizer
 
 // Enumération pour les langues supportées
+/*
 public enum Language: String, Codable, Sendable, CaseIterable {
     case english = "en" // 1st default
     case swedish = "sv" // 2st default
@@ -78,7 +80,7 @@ public enum Language: String, Codable, Sendable, CaseIterable {
         return .english
     }
 }
-
+*/
 public struct LocalizedString: Codable, Hashable, Sendable {
     public var en: String?
     public var sv: String?
@@ -91,8 +93,8 @@ public struct LocalizedString: Codable, Hashable, Sendable {
 
     public func localized(language: Language) -> String? {
         switch language {
-        case .english: return en
-        case .swedish: return sv
+        case .en: return en
+        case .sv: return sv
         default: return nil
         }
     }
