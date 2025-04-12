@@ -1,13 +1,13 @@
 {
-  "originHash" : "e207f0c523a6c40d38394caeaff773876d4acd82d10b26f0c6422dbbcfefae15",
+  "originHash" : "69bc979439eed8c5dee180b3c792fbbbc6f539682875fe7d6112b5775b51ba6b",
   "pins" : [
     {
       "identity" : "localizer",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/MihaelIsaev/Localizer.git",
+      "location" : "https://github.com/coaoac/Localizer",
       "state" : {
-        "revision" : "6fa620dce9c52d2aab1aca9348f9d8427cfde509",
-        "version" : "1.0.2"
+        "branch" : "master",
+        "revision" : "15447a219fd6395472d1b40a70bec2e9622af37a"
       }
     }
   ],

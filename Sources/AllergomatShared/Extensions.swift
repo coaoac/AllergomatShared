@@ -110,5 +110,6 @@ extension Language: Codable {
     }
 }
 
-
-
+extension Language {
+    public static let supported = [Language.en, Language.sv]
+}
