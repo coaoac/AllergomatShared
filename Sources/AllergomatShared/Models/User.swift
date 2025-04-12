@@ -195,13 +195,14 @@ public struct User: Codable, Sendable {
         public var allergies: [Allergy.ID]?
         public var products: [Product.ID]?
         public var ingredients: [Keyword.ID]?
+        public var reviews: [Review.ID]?
         public var token: Token.ID
 
         public init(
             _id: ID, name: String? = nil, email: String? = nil, realUserStatus: Int,
             role: User.Role, experience: Int, payments: [User.Payment],
             allergies: [Allergy.ID]? = nil, products: [Product.ID]? = nil,
-            ingredients: [Keyword.ID]? = nil, token: Token.ID
+            ingredients: [Keyword.ID]? = nil, reviews: [Review.ID]? = nil, token: Token.ID
         ) {
             self._id = _id
             self.name = name
@@ -216,7 +217,7 @@ public struct User: Codable, Sendable {
             self.token = token
         }
 
-        public static func from(user: User, payments: [Payment], token: Token) -> BasicUserInfo {
+        public static func from(user: User, payments: [Payment], reviews: [Review], token: Token) -> BasicUserInfo {
             BasicUserInfo(
                 _id: user._id,
                 name: user.name,
@@ -228,6 +229,7 @@ public struct User: Codable, Sendable {
                 allergies: user.allergies,
                 products: user.products,
                 ingredients: user.ingredients,
+                reviews: reviews.map(\._id),
                 token: token._id)
         }
 
@@ -241,7 +243,8 @@ public struct User: Codable, Sendable {
                     == rhs.payments.sorted(by: { $0.date > $1.date }),
                 lhs.allergies?.sorted(by: { $0 > $1 }) == rhs.allergies?.sorted(by: { $0 > $1 }),
                 lhs.token == rhs.token,
-                lhs.experience == rhs.experience
+                lhs.experience == rhs.experience,
+                lhs.reviews?.sorted(by: { $0 > $1 }) == rhs.reviews?.sorted(by: { $0 > $1 })
             {
                 return true
             } else {
