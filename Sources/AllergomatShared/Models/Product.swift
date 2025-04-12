@@ -1,16 +1,16 @@
 import Foundation
-
+import Localizer
 public struct Product: Codable, Equatable, Sendable {
     public static let _cname = "Products"
     public typealias ID = String
 
     public let _id: ID  // EAN
     public var name: String
-    public var nameLocalized: LocalizedString?
+    public var nameLocalized: [LocalizedString]?
     public var producer: String?
     public var origin: Country.ID?
     public var ingredients: String?
-    public var ingredientsLocalized: LocalizedString?
+    public var ingredientsLocalized: [LocalizedString]?
     public var image: Picture.ID?
     public var updated: Date
     public var dataSource: Source
@@ -18,7 +18,7 @@ public struct Product: Codable, Equatable, Sendable {
 
     public init(
         _id: ID, name: String, producer: String? = nil, origin: Country.ID? = nil,
-        ingredients: String? = nil, ingredientsLocalized: LocalizedString? = nil, image: Picture.ID? = nil, updated: Date, dataSource: Source,
+        ingredients: String? = nil, ingredientsLocalized: [LocalizedString]? = nil, image: Picture.ID? = nil, updated: Date, dataSource: Source,
         reviewed: Date? = nil
     ) {
         self._id = _id

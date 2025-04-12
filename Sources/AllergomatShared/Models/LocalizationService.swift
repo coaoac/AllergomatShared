@@ -98,7 +98,7 @@ public struct LocalizationService {
         swedish: String?,
         english: String?,
         fallback: String? = nil
-    ) -> LocalizedString {
+    ) -> [LocalizedString] {
         var localizedStrings = [Language: String]()
         
         if let swedish = swedish, !swedish.isEmpty {
@@ -114,8 +114,14 @@ public struct LocalizationService {
             localizedStrings[.sv] = fallback
             localizedStrings[.en] = fallback
         }
-        
-        return LocalizedString(en: english, sv: swedish)
+        var list = [LocalizedString]()
+        if let english = english {
+            list.append(LocalizedString(english, language: .en))
+        }
+        if let swedish = swedish {
+            list.append(LocalizedString(swedish, language: .sv))
+        }
+        return list
     }
     
     // MARK: - Country Name Mapping

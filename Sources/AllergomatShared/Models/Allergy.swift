@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Localizer
 
 public struct Allergy: Codable, Hashable, Sendable, Identifiable {
     public static let _cname = "Allergies"

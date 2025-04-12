@@ -9,10 +9,6 @@ import Foundation
 import Localizer
 extension String {
 
-    public init(localizedString: LocalizedString, language: Language) {
-        self = localizedString.localized(language: language) ?? ""
-    }
-
     public func upperCaseWords() -> [String] {
         var array = [String]()
         var st = ""

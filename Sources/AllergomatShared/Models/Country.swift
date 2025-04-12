@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Localizer
 
 public struct Country: Codable, Sendable {
     public static let _cname = "Countries"

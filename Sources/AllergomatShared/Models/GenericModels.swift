@@ -80,7 +80,7 @@ public enum Language: String, Codable, Sendable, CaseIterable {
         return .english
     }
 }
-*/
+
 public struct LocalizedString: Codable, Hashable, Sendable {
     public var en: String?
     public var sv: String?
@@ -99,6 +99,7 @@ public struct LocalizedString: Codable, Hashable, Sendable {
         }
     }
 }
+*/
 
 public struct OK: Codable, Sendable {
     public let ok: Bool
