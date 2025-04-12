@@ -275,11 +275,11 @@ public struct Review: Codable, Sendable {
     public let allergy: Allergy.ID?
     public let date: Date
     public let text: String?
-    public let approved: Bool
+    public let approved: Bool?
 
     public init(
         _id: ID, user: User.ID, product: Product.ID?, ingredient: Keyword.ID? = nil, allergy: Allergy.ID? = nil,
-        date: Date, text: String?, approved: Bool
+        date: Date, text: String?, approved: Bool? = nil
     ) {
         self._id = _id
         self.user = user
