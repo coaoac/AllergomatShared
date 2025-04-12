@@ -290,4 +290,15 @@ public struct Review: Codable, Sendable {
         self.text = text
         self.approved = approved
     }
+
+    public init(for product: Product.ID, user: User.ID, date: Date = Date(), text: String?, approved: Bool? = nil) {
+        self._id = "productReview - Product: \(product) - User: \(user)"
+        self.user = user
+        self.product = product
+        self.ingredient = nil
+        self.allergy = nil
+        self.date = date
+        self.text = text
+        self.approved = approved
+    }
 }
