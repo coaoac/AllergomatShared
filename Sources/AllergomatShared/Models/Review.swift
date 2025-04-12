@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Review: Codable, Sendable {
+public struct Review: Codable, Sendable, Equatable {
     public static let _cname = "Reviews"
     public typealias ID = String
     public let _id: ID
