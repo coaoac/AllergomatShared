@@ -18,7 +18,16 @@ public struct LocalizationService {
     public static func defaultLanguagePreference() -> [Language] {
         return [.sv, .en]
     }
-/*
+
+    /// Gets market and locale tuple based on language
+    /// - Parameter language: The language to get market and locale for
+    /// - Returns: A tuple with market (country code) and locale string
+    public static func getMarketAndLocale(for language: Language) -> (market: String, locale: String) {
+        let market = countryCode(for: language)
+        let locale = self.locale(for: language)
+        return (market, locale)
+    }
+
     // MARK: - Country Codes
 
 
@@ -31,31 +40,7 @@ public struct LocalizationService {
         case .sv: return "SE"
         case .de: return "DE"
         case .fr: return "FR"
-        case .it: return "IT"
-        case .es: return "ES"
-        case .pt: return "PT"
-        case .nl: return "NL"
-        case .pl: return "PL"
-        case .dk: return "DK"
-        case .no: return "NO"
-        case .ru: return "RU"
-        case .jp: return "JP"
-        case .kr: return "KR"
-        case .cn: return "CN"
-        case .ae: return "AE"
-        case .tr: return "TR"
-        case .gr: return "GR"
-        case .il: return "IL"
-        case .cz: return "CZ"
-        case .hu: return "HU"
-        case .ro: return "RO"
-        case .bg: return "BG"
-        case .ua: return "UA"
-        case .th: return "TH"
-        case .vn: return "VN"
-        case .id: return "ID"
-        case .my: return "MY"
-        case .rs: return "RS"
+        default: return "SE"
         }
     }
     
@@ -68,15 +53,6 @@ public struct LocalizationService {
         let langCode = isoCode(for: language)
         let countryCode = self.countryCode(for: language)
         return "\(langCode)-\(countryCode)"
-    }
-    
-    /// Gets market and locale tuple based on language
-    /// - Parameter language: The language to get market and locale for
-    /// - Returns: A tuple with market (country code) and locale string
-    public static func getMarketAndLocale(for language: Language) -> (market: String, locale: String) {
-        let market = countryCode(for: language)
-        let locale = self.locale(for: language)
-        return (market, locale)
     }
     
     // MARK: - Localized String Helpers
@@ -141,7 +117,7 @@ public struct LocalizationService {
         
         return LocalizedString(en: english, sv: swedish)
     }
-    */
+    
     // MARK: - Country Name Mapping
     
     /// Maps a country name to ISO 3166-1 alpha-2 code
