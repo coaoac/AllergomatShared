@@ -22,7 +22,6 @@ public struct Picture: Codable, Sendable {
         case jpeg = "image/jpeg"
         case png = "image/png"
         case gif = "image/gif"
-        case unknown = "application/octet-stream"
     }
 
     public enum DataEncoding: String, Codable, Sendable {
