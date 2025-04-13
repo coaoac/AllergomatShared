@@ -77,7 +77,7 @@ public struct LocalizationService {
         
         return (primary, fallback)
     }
-    
+    /*
     /// Get the best available localized string from a map based on preferred languages
     public static func getBestLocalizedString(
         from localizedStrings: [Language: String],
@@ -123,7 +123,7 @@ public struct LocalizationService {
         }
         return list
     }
-    
+    */
     // MARK: - Country Name Mapping
     
     /// Maps a country name to ISO 3166-1 alpha-2 code

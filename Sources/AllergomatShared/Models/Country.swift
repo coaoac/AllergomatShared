@@ -13,7 +13,7 @@ public struct Country: Codable, Sendable {
     public typealias ID = String
     public let _id: ID //alpha2
     public let name: Name
-    public let nameLocalized: LocalizedString?
+    public let nameLocalized: LocalizedStrings?
     public let tld: [String]
     public let ccn3: String
     public let cca3: String //alpha3
@@ -37,7 +37,7 @@ public struct Country: Codable, Sendable {
     public let union: Union
     public let unionflag: String
 
-    public init(_id: ID, name: Name, nameLocalized: LocalizedString?, tld: [String], ccn3: String, cca3: String, cioc: String, independent: Bool?, status: Status, currencies: [String: Currency], idd: Idd, capital: [String], altSpellings: [String], region: Region, subregion: String, languages: [String: String], translations: [String: Translation], latlng: [Double], demonym: String, landlocked: Bool, borders: [String], area: Double, flag: String, union: Union, unionflag: String) {
+    public init(_id: ID, name: Name, nameLocalized: LocalizedStrings?, tld: [String], ccn3: String, cca3: String, cioc: String, independent: Bool?, status: Status, currencies: [String: Currency], idd: Idd, capital: [String], altSpellings: [String], region: Region, subregion: String, languages: [String: String], translations: [String: Translation], latlng: [Double], demonym: String, landlocked: Bool, borders: [String], area: Double, flag: String, union: Union, unionflag: String) {
         self._id = _id
         self.name = name
         self.nameLocalized = nameLocalized
