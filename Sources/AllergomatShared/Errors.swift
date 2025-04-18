@@ -37,6 +37,10 @@ public struct FError: Error, Identifiable, Codable, Sendable {
         case invalid_role
         case invalid_experience
 
+        // MARK: Locales
+        case invalid_locale
+        case invalid_country
+        case invalid_language
 
         // MARK: Server User login
         case user_not_saved_to_database
