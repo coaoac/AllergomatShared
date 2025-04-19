@@ -12,6 +12,19 @@ public struct Review: Codable, Sendable, Equatable {
     public let text: String?
     public let approved: Bool?
 
+    public static func empty() -> Review {
+        return Review(
+            _id: "",
+            user: "",
+            product: nil,
+            ingredient: nil,
+            allergy: nil,
+            date: Date(),
+            text: nil,
+            approved: nil
+        )
+    }
+
     public struct User_Product_Review: Codable, Sendable {
         public let user: User.ID
         public let product: Product.ID
