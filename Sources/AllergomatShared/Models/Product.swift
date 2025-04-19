@@ -37,6 +37,7 @@ public struct Product: Codable, Equatable, Sendable {
         case ica
         case coop
         case ai
+        case web
         case app
         case server
         case manual
