@@ -22,6 +22,9 @@ public struct Picture: Codable, Sendable {
         case jpeg = "image/jpeg"
         case png = "image/png"
         case gif = "image/gif"
+        case webp = "image/webp"
+        case svg = "image/svg+xml"
+        case tiff = "image/tiff"
     }
 
     public enum DataEncoding: String, Codable, Sendable {
