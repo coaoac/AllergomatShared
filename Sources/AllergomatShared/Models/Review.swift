@@ -47,4 +47,15 @@ public struct Review: Codable, Sendable, Equatable {
         self.text = text
         self.approved = approved
     }
+
+    public struct ProductStats: Codable, Sendable {
+        public let product: Product.ID
+        public let positive: Int
+        public let negative: Int
+        public init(product: Product.ID, positive: Int, negative: Int) {
+            self.product = product
+            self.positive = positive
+            self.negative = negative
+        }
+    }
 }
