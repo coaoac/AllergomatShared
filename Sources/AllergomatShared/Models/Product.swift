@@ -42,10 +42,10 @@ public struct Product: Codable, Equatable, Sendable {
         case manual
 
         public static func < (lhs: Source, rhs: Source) -> Bool {
-            return lhs.comparisionLevel() < rhs.comparisionLevel()
+            return lhs.accuracyLevel() < rhs.accuracyLevel()
         }
 
-        private func comparisionLevel() -> Int {
+        private func accuracyLevel() -> Int {
             switch self {
             case .ica: return 1
             case .coop: return 1
