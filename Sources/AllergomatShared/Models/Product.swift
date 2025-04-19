@@ -33,14 +33,28 @@ public struct Product: Codable, Equatable, Sendable {
         self.reviewed = reviewed
     }
 
-    public enum Source: String, Codable, Sendable {
+    public enum Source: String, Codable, Sendable, Comparable {
         case ica
         case coop
         case ai
         case web
         case app
-        case server
         case manual
+
+        public static func < (lhs: Source, rhs: Source) -> Bool {
+            return lhs.comparisionLevel() < rhs.comparisionLevel()
+        }
+
+        private func comparisionLevel() -> Int {
+            switch self {
+            case .ica: return 1
+            case .coop: return 1
+            case .ai: return 2
+            case .web: return 2
+            case .app: return 3
+            case .manual: return 3
+            }
+        }
     }
 
     public struct WithPicture: Codable, Sendable {
