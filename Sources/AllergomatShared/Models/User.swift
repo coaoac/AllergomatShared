@@ -24,6 +24,25 @@ public struct User: Codable, Sendable {
     public var doNotContact: Bool
     public let joined: Date
 
+    public init(
+        _id: ID, name: String?, email: String?, realUserStatus: Int, role: Role,
+        experience: Int, appleID: ID?, allergies: [Allergy.ID]?, products: [Product.ID]?,
+        ingredients: [Keyword.ID]?, doNotContact: Bool, joined: Date
+    ) {
+        self._id = _id
+        self.name = name
+        self.email = email
+        self.realUserStatus = realUserStatus
+        self.role = role
+        self.experience = experience
+        self.appleID = appleID
+        self.allergies = allergies
+        self.products = products
+        self.ingredients = ingredients
+        self.doNotContact = doNotContact
+        self.joined = joined
+    }
+
     public func updated(from userInfo: BasicUserInfo) -> User {
         User(
             _id: _id,
@@ -171,6 +190,26 @@ public struct User: Codable, Sendable {
         public var ingredients: [Keyword.ID]?
         public var doNotContact: Bool
         public var token: Token.ID
+
+        public init(
+            _id: ID, name: String?, email: String?, realUserStatus: Int, role: User.Role,
+            experience: Int, payments: [User.Payment], allergies: [Allergy.ID]?,
+            products: [Product.ID]?, ingredients: [Keyword.ID]?, doNotContact: Bool,
+            token: Token.ID
+        ) {
+            self._id = _id
+            self.name = name
+            self.email = email
+            self.realUserStatus = realUserStatus
+            self.role = role
+            self.experience = experience
+            self.payments = payments
+            self.allergies = allergies
+            self.products = products
+            self.ingredients = ingredients
+            self.doNotContact = doNotContact
+            self.token = token
+        }
 
         public static func from(user: User, payments: [Payment], token: Token) -> BasicUserInfo {
             BasicUserInfo(
