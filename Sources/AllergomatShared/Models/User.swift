@@ -21,6 +21,7 @@ public struct User: Codable, Sendable {
     public var allergies: [Allergy.ID]?
     public var products: [Product.ID]?
     public var ingredients: [Keyword.ID]?
+    public var doNotContact: Bool?
     public let joined: Date
 
     public init(
