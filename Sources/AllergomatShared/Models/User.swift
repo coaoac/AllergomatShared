@@ -21,26 +21,8 @@ public struct User: Codable, Sendable {
     public var allergies: [Allergy.ID]?
     public var products: [Product.ID]?
     public var ingredients: [Keyword.ID]?
-    public var doNotContact: Bool?
+    public var doNotContact: Bool
     public let joined: Date
-
-    public init(
-        _id: ID, name: String? = nil, email: String? = nil, realUserStatus: Int, role: Role,
-        experience: Int, appleID: ID? = nil, allergies: [Allergy.ID]? = nil,
-        products: [Product.ID]? = nil, ingredients: [Keyword.ID]? = nil, joined: Date
-    ) {
-        self._id = _id
-        self.name = name
-        self.email = email
-        self.realUserStatus = realUserStatus
-        self.role = role
-        self.experience = experience
-        self.appleID = appleID
-        self.allergies = allergies
-        self.products = products
-        self.ingredients = ingredients
-        self.joined = joined
-    }
 
     public func updated(from userInfo: BasicUserInfo) -> User {
         User(
@@ -54,6 +36,7 @@ public struct User: Codable, Sendable {
             allergies: userInfo.allergies,
             products: userInfo.products,
             ingredients: userInfo.ingredients,
+            doNotContact: userInfo.doNotContact,
             joined: joined)
     }
 
@@ -63,16 +46,6 @@ public struct User: Codable, Sendable {
         public let realUserStatus: Int
         public let appCode: String
         public let source: Source
-
-        public init(
-            name: String?, email: String?, realUserStatus: Int, appCode: String, source: Source
-        ) {
-            self.name = name
-            self.email = email
-            self.realUserStatus = realUserStatus
-            self.appCode = appCode
-            self.source = source
-        }
     }
 
     public struct Payment: Codable, Equatable, Sendable {
@@ -196,26 +169,8 @@ public struct User: Codable, Sendable {
         public var allergies: [Allergy.ID]?
         public var products: [Product.ID]?
         public var ingredients: [Keyword.ID]?
+        public var doNotContact: Bool
         public var token: Token.ID
-
-        public init(
-            _id: ID, name: String? = nil, email: String? = nil, realUserStatus: Int,
-            role: User.Role, experience: Int, payments: [User.Payment],
-            allergies: [Allergy.ID]? = nil, products: [Product.ID]? = nil,
-            ingredients: [Keyword.ID]? = nil, token: Token.ID
-        ) {
-            self._id = _id
-            self.name = name
-            self.email = email
-            self.realUserStatus = realUserStatus
-            self.role = role
-            self.experience = experience
-            self.payments = payments
-            self.allergies = allergies
-            self.products = products
-            self.ingredients = ingredients
-            self.token = token
-        }
 
         public static func from(user: User, payments: [Payment], token: Token) -> BasicUserInfo {
             BasicUserInfo(
@@ -229,6 +184,7 @@ public struct User: Codable, Sendable {
                 allergies: user.allergies,
                 products: user.products,
                 ingredients: user.ingredients,
+                doNotContact: user.doNotContact,
                 token: token._id)
         }
 
