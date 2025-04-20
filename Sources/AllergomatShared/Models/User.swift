@@ -65,6 +65,17 @@ public struct User: Codable, Sendable {
         public let realUserStatus: Int
         public let appCode: String
         public let source: Source
+
+        public init(
+            name: String?, email: String?, realUserStatus: Int, appCode: String,
+            source: Source
+        ) {
+            self.name = name
+            self.email = email
+            self.realUserStatus = realUserStatus
+            self.appCode = appCode
+            self.source = source
+        }
     }
 
     public struct Payment: Codable, Equatable, Sendable {
