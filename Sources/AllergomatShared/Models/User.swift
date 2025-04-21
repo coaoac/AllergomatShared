@@ -289,16 +289,14 @@ public struct Settings: Codable, Sendable {
     public var supportedAllergies: [Allergy]
     public var numberOfProducts: Int
     public var numberOfProductSearchesLast30Days: Int
-    public var doNotContact: Bool
 
     public init(
         userInfo: User.BasicUserInfo, supportedAllergies: [Allergy], numberOfProducts: Int,
-        numberOfProductSearchesLast30Days: Int, doNotContact: Bool
+        numberOfProductSearchesLast30Days: Int
     ) {
         self.userInfo = userInfo
         self.supportedAllergies = supportedAllergies
         self.numberOfProducts = numberOfProducts
         self.numberOfProductSearchesLast30Days = numberOfProductSearchesLast30Days
-        self.doNotContact = doNotContact
     }
 }
