@@ -7,6 +7,7 @@
 
 //import Authentication
 import Foundation
+import Localizer
 
 public struct User: Codable, Sendable {
     public static let _cname = "Users"
@@ -22,6 +23,8 @@ public struct User: Codable, Sendable {
     public var products: [Product.ID]?
     public var ingredients: [Keyword.ID]?
     public var doNotContact: Bool
+    public var country: CountryCode?
+    public var language: Language?
     public let joined: Date
 
     public init(

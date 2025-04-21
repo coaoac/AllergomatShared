@@ -98,14 +98,6 @@ private extension DispatchSemaphore {
     }
 }
 
-extension Language: Codable {
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        let rawValue = try container.decode(String.self)
-        self = Language(rawValue: rawValue) ?? .sv
-    }
-}
-
 extension Language {
     public static let supported = [Language.en, Language.sv]
 }
