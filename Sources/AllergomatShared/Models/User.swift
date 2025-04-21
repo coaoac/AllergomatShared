@@ -19,18 +19,18 @@ public struct User: Codable, Sendable {
     public var role: Role
     public var experience: Int
     public var appleID: ID?
-    public var allergies: [Allergy.ID]?
-    public var products: [Product.ID]?
-    public var ingredients: [Keyword.ID]?
+    public var allergies: [Allergy.ID]
+    public var products: [Product.ID]
+    public var ingredients: [Keyword.ID]
     public var doNotContact: Bool
-    public var country: CountryCode?
-    public var language: Language?
+    public var country: CountryCode
+    public var language: Language
     public let joined: Date
 
     public init(
         _id: ID, name: String?, email: String?, realUserStatus: Int, role: Role,
-        experience: Int, appleID: ID?, allergies: [Allergy.ID]?, products: [Product.ID]?,
-        ingredients: [Keyword.ID]?, doNotContact: Bool, joined: Date
+        experience: Int, appleID: ID?, allergies: [Allergy.ID], products: [Product.ID],
+        ingredients: [Keyword.ID], country: CountryCode, language: Language, doNotContact: Bool, joined: Date
     ) {
         self._id = _id
         self.name = name
@@ -42,6 +42,8 @@ public struct User: Codable, Sendable {
         self.allergies = allergies
         self.products = products
         self.ingredients = ingredients
+        self.country = country
+        self.language = language
         self.doNotContact = doNotContact
         self.joined = joined
     }
@@ -58,6 +60,8 @@ public struct User: Codable, Sendable {
             allergies: userInfo.allergies,
             products: userInfo.products,
             ingredients: userInfo.ingredients,
+            country: userInfo.country,
+            language: userInfo.language,
             doNotContact: userInfo.doNotContact,
             joined: joined)
     }
@@ -199,16 +203,18 @@ public struct User: Codable, Sendable {
         public var role: User.Role
         public var experience: Int
         public var payments: [User.Payment]
-        public var allergies: [Allergy.ID]?
-        public var products: [Product.ID]?
-        public var ingredients: [Keyword.ID]?
+        public var allergies: [Allergy.ID]
+        public var products: [Product.ID]
+        public var ingredients: [Keyword.ID]
+        public var country: CountryCode
+        public var language: Language
         public var doNotContact: Bool
         public var token: Token.ID
 
         public init(
             _id: ID, name: String?, email: String?, realUserStatus: Int, role: User.Role,
-            experience: Int, payments: [User.Payment], allergies: [Allergy.ID]?,
-            products: [Product.ID]?, ingredients: [Keyword.ID]?, doNotContact: Bool,
+            experience: Int, payments: [User.Payment], allergies: [Allergy.ID],
+            products: [Product.ID], ingredients: [Keyword.ID], country: CountryCode, language: Language, doNotContact: Bool,
             token: Token.ID
         ) {
             self._id = _id
@@ -221,6 +227,8 @@ public struct User: Codable, Sendable {
             self.allergies = allergies
             self.products = products
             self.ingredients = ingredients
+            self.country = country
+            self.language = language
             self.doNotContact = doNotContact
             self.token = token
         }
@@ -237,6 +245,8 @@ public struct User: Codable, Sendable {
                 allergies: user.allergies,
                 products: user.products,
                 ingredients: user.ingredients,
+                country: user.country,
+                language: user.language,
                 doNotContact: user.doNotContact,
                 token: token._id)
         }
@@ -249,7 +259,7 @@ public struct User: Codable, Sendable {
                 lhs.role == rhs.role,
                 lhs.payments.sorted(by: { $0.date > $1.date })
                     == rhs.payments.sorted(by: { $0.date > $1.date }),
-                lhs.allergies?.sorted(by: { $0 > $1 }) == rhs.allergies?.sorted(by: { $0 > $1 }),
+                lhs.allergies.sorted(by: { $0 > $1 }) == rhs.allergies.sorted(by: { $0 > $1 }),
                 lhs.token == rhs.token,
                 lhs.experience == rhs.experience
             {
