@@ -21,7 +21,7 @@ public struct User: Codable, Sendable {
     public var appleID: ID?
     public var allergies: [Allergy.ID]
     public var products: [Product.ID]
-    public var ingredients: [Keyword.ID]
+    public var ingredients: [Ingredient.ID]
     public var doNotContact: Bool
     public var country: CountryCode
     public var language: Language
@@ -30,7 +30,7 @@ public struct User: Codable, Sendable {
     public init(
         _id: ID, name: String?, email: String?, realUserStatus: Int, role: Role,
         experience: Int, appleID: ID?, allergies: [Allergy.ID], products: [Product.ID],
-        ingredients: [Keyword.ID], country: CountryCode, language: Language, doNotContact: Bool, joined: Date
+        ingredients: [Ingredient.ID], country: CountryCode, language: Language, doNotContact: Bool, joined: Date
     ) {
         self._id = _id
         self.name = name
@@ -205,7 +205,7 @@ public struct User: Codable, Sendable {
         public var payments: [User.Payment]
         public var allergies: [Allergy.ID]
         public var products: [Product.ID]
-        public var ingredients: [Keyword.ID]
+        public var ingredients: [Ingredient.ID]
         public var country: CountryCode
         public var language: Language
         public var doNotContact: Bool
@@ -214,7 +214,7 @@ public struct User: Codable, Sendable {
         public init(
             _id: ID, name: String?, email: String?, realUserStatus: Int, role: User.Role,
             experience: Int, payments: [User.Payment], allergies: [Allergy.ID],
-            products: [Product.ID], ingredients: [Keyword.ID], country: CountryCode, language: Language, doNotContact: Bool,
+            products: [Product.ID], ingredients: [Ingredient.ID], country: CountryCode, language: Language, doNotContact: Bool,
             token: Token.ID
         ) {
             self._id = _id

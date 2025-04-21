@@ -29,7 +29,7 @@ public struct Allergy: Codable, Hashable, Sendable, Identifiable {
         self.beta = beta
     }
 
-    public func maxProba(ingredients: [Keyword?]) -> AllergyProba {
+    public func maxProba(ingredients: [Ingredient?]) -> AllergyProba {
         ingredients.map { ingredient in
             ingredient?.allergies.first{ $0.allergy == _id } ?? Allergy.AllergyProba(allergy: self._id, proba: .none)
         }.sorted { lhs, rhs in

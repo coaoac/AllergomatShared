@@ -5,7 +5,7 @@
 //  Created by Chaouki, Amine on 2020-01-10.
 //  Copyright © 2020 AllergyKlubb. All rights reserved.
 //
-
+/*
 import Foundation
 import Localizer
 
@@ -113,3 +113,4 @@ extension Keyword: Equatable {
             }
     }
 }
+*/

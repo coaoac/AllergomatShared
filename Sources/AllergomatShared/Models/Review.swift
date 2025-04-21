@@ -6,7 +6,7 @@ public struct Review: Codable, Sendable, Equatable {
     public let _id: ID
     public let user: User.ID
     public let product: Product.ID?
-    public let ingredient: Keyword.ID?
+    public let ingredient: Ingredient.ID?
     public let allergy: Allergy.ID?
     public let date: Date
     public let text: String?
@@ -37,7 +37,7 @@ public struct Review: Codable, Sendable, Equatable {
     }
 
     public init(
-        _id: ID, user: User.ID, product: Product.ID?, ingredient: Keyword.ID? = nil, allergy: Allergy.ID? = nil,
+        _id: ID, user: User.ID, product: Product.ID?, ingredient: Ingredient.ID? = nil, allergy: Allergy.ID? = nil,
         date: Date, text: String?, approved: Bool? = nil
     ) {
         self._id = _id
