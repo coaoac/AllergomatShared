@@ -281,3 +281,20 @@ public struct User: Codable, Sendable {
         }
     }
 }
+
+public struct Settings: Codable, Sendable {
+    public var userInfo: User.BasicUserInfo
+    public var supportedAllergies: [Allergy]
+    public var numberOfProducts: Int
+    public var numberOfProductSearchesLast30Days: Int
+
+    public init(
+        userInfo: User.BasicUserInfo, supportedAllergies: [Allergy], numberOfProducts: Int,
+        numberOfProductSearchesLast30Days: Int
+    ) {
+        self.userInfo = userInfo
+        self.supportedAllergies = supportedAllergies
+        self.numberOfProducts = numberOfProducts
+        self.numberOfProductSearchesLast30Days = numberOfProductSearchesLast30Days
+    }
+}

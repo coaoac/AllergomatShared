@@ -205,20 +205,3 @@ public enum Status: Int, Codable, Comparable, Sendable, Identifiable {
         }
     }
 }
-
-public struct Settings: Codable, Sendable {
-    public let userInfo: User.BasicUserInfo
-    public let supportedAllergies: [Allergy]
-    public let numberOfProducts: Int
-    public let numberOfProductSearchesLast30Days: Int
-
-    public init(
-        userInfo: User.BasicUserInfo, supportedAllergies: [Allergy], numberOfProducts: Int,
-        numberOfProductSearchesLast30Days: Int
-    ) {
-        self.userInfo = userInfo
-        self.supportedAllergies = supportedAllergies
-        self.numberOfProducts = numberOfProducts
-        self.numberOfProductSearchesLast30Days = numberOfProductSearchesLast30Days
-    }
-}
