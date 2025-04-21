@@ -72,16 +72,18 @@ public struct User: Codable, Sendable {
         public let realUserStatus: Int
         public let appCode: String
         public let source: Source
+        public let doNotContact: Bool
 
         public init(
             name: String?, email: String?, realUserStatus: Int, appCode: String,
-            source: Source
+            source: Source, doNotContact: Bool
         ) {
             self.name = name
             self.email = email
             self.realUserStatus = realUserStatus
             self.appCode = appCode
             self.source = source
+            self.doNotContact = doNotContact
         }
     }
 
@@ -287,14 +289,16 @@ public struct Settings: Codable, Sendable {
     public var supportedAllergies: [Allergy]
     public var numberOfProducts: Int
     public var numberOfProductSearchesLast30Days: Int
+    public var doNotContact: Bool
 
     public init(
         userInfo: User.BasicUserInfo, supportedAllergies: [Allergy], numberOfProducts: Int,
-        numberOfProductSearchesLast30Days: Int
+        numberOfProductSearchesLast30Days: Int, doNotContact: Bool
     ) {
         self.userInfo = userInfo
         self.supportedAllergies = supportedAllergies
         self.numberOfProducts = numberOfProducts
         self.numberOfProductSearchesLast30Days = numberOfProductSearchesLast30Days
+        self.doNotContact = doNotContact
     }
 }
