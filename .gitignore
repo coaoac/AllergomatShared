@@ -8,3 +8,4 @@ DerivedData/
 .netrc
 .settings.json
 Package.resolved
+.vscode/settings.json
