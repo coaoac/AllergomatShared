@@ -105,10 +105,12 @@ public struct Product: Codable, Equatable, Sendable {
 
     public struct Extended: Codable, Sendable {
         public let product: Product
-        public let ingredients: [Ingredient]
-        public init(product: Product, ingredients: [Ingredient]) {
+        public let ingredients: [Ingredient]?
+        public let picture: Picture?
+        public init(product: Product, ingredients: [Ingredient], picture: Picture?) {
             self.product = product
             self.ingredients = ingredients
+            self.picture = picture
         }
     }
 
