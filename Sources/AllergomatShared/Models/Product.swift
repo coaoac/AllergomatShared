@@ -57,15 +57,6 @@ public struct Product: Codable, Equatable, Sendable {
         }
     }
 
-    public struct WithPicture: Codable, Sendable {
-        public let product: Product
-        public let picture: Picture?
-
-        public init(product: Product, picture: Picture?) {
-            self.product = product
-            self.picture = picture
-        }
-    }
     public struct EAN: Codable, Sendable {
         public let ean: ID
         public init(ean: ID) {
