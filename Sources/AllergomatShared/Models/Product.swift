@@ -1,5 +1,6 @@
 import Foundation
 import Localizer
+
 public struct Product: Codable, Equatable, Sendable {
     public static let _cname = "Products"
     public typealias ID = String
