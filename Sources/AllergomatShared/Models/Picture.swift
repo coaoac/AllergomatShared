@@ -6,34 +6,22 @@
 //
 
 import Foundation
+import Localizer
 
 public struct Picture: Codable, Sendable {
     public static let _cname = "Images"
     public typealias ID = String
     public let _id: ID
     public let data: Data
-    public let dataType: DataType
-    public let dataEncoding: DataEncoding
+    public let dataType: Data.Format
+    public let dataEncoding: Data.Encoding
     public var user: User.ID?
     public var product: Product.ID
     public var updated: Date
 
-    public enum DataType: String, Codable, Sendable {
-        case jpeg = "image/jpeg"
-        case png = "image/png"
-        case gif = "image/gif"
-        case webp = "image/webp"
-        case svg = "image/svg+xml"
-        case tiff = "image/tiff"
-    }
-
-    public enum DataEncoding: String, Codable, Sendable {
-        case base64
-    }
-
     public init(
-        user: User.ID?, product: Product.ID, data: Data, dataType: DataType,
-        dataEncoding: DataEncoding, updated: Date
+        user: User.ID?, product: Product.ID, data: Data, dataType: Data.Format,
+        dataEncoding: Data.Encoding, updated: Date
     ) {
         self.data = data
         self.updated = updated

@@ -13,7 +13,7 @@ public struct Allergen: Codable, Hashable, Sendable, Identifiable {
     public static let _cname = "Allergens"
     public typealias ID = String
     public let _id: ID  // code
-    public var name: LocalizedStrings
+    public var name: LocalizedStringList
     public var allergies: [Allergy.AllergyProba]
     public var updated: Date
     public var id: String {
@@ -21,7 +21,8 @@ public struct Allergen: Codable, Hashable, Sendable, Identifiable {
     }
 
     public init(
-        _id: ID, name: LocalizedStrings, allergies: [Allergy.AllergyProba], updated: Date) {
+        _id: ID, name: LocalizedStringList, allergies: [Allergy.AllergyProba], updated: Date
+    ) {
         self._id = _id
         self.name = name
         self.allergies = allergies

@@ -11,12 +11,12 @@ import Localizer
 public struct Country: Codable, Sendable {
     public static let _cname = "Countries"
     public typealias ID = String
-    public let _id: ID //alpha2
+    public let _id: ID  //alpha2
     public let name: Name
-    public let nameLocalized: LocalizedStrings?
+    public let nameLocalized: LocalizedStringList?
     public let tld: [String]
     public let ccn3: String
-    public let cca3: String //alpha3
+    public let cca3: String  //alpha3
     public let cioc: String
     public let independent: Bool?
     public let status: Status
@@ -37,7 +37,14 @@ public struct Country: Codable, Sendable {
     public let union: Union
     public let unionflag: String
 
-    public init(_id: ID, name: Name, nameLocalized: LocalizedStrings?, tld: [String], ccn3: String, cca3: String, cioc: String, independent: Bool?, status: Status, currencies: [String: Currency], idd: Idd, capital: [String], altSpellings: [String], region: Region, subregion: String, languages: [String: String], translations: [String: Translation], latlng: [Double], demonym: String, landlocked: Bool, borders: [String], area: Double, flag: String, union: Union, unionflag: String) {
+    public init(
+        _id: ID, name: Name, nameLocalized: LocalizedStringList?, tld: [String], ccn3: String,
+        cca3: String, cioc: String, independent: Bool?, status: Status,
+        currencies: [String: Currency], idd: Idd, capital: [String], altSpellings: [String],
+        region: Region, subregion: String, languages: [String: String],
+        translations: [String: Translation], latlng: [Double], demonym: String, landlocked: Bool,
+        borders: [String], area: Double, flag: String, union: Union, unionflag: String
+    ) {
         self._id = _id
         self.name = name
         self.nameLocalized = nameLocalized
@@ -163,12 +170,11 @@ public struct Country: Codable, Sendable {
             }
         }
     }
-    
+
     public func simple() -> Simple {
         let translation = name.native["swe"]?.common ?? name.common
         return Country.Simple(_id: _id, english: name.common, swedish: translation, flag: flag)
     }
-
 
 }
 
@@ -179,7 +185,10 @@ public struct Country_Simple: Codable, Sendable, Identifiable {
         alpha2Code
     }
 
-    public init(name_en: String, name_se: String, flag: String, alpha2Code: String, alpha3Code: String, numCode: String, region: String, isEU: Bool) {
+    public init(
+        name_en: String, name_se: String, flag: String, alpha2Code: String, alpha3Code: String,
+        numCode: String, region: String, isEU: Bool
+    ) {
         self.name_en = name_en
         self.name_se = name_se
         self.flag = flag

@@ -12,16 +12,19 @@ public struct Allergy: Codable, Hashable, Sendable, Identifiable {
     public static let _cname = "Allergies"
     public typealias ID = String
     public let _id: ID
-    public let name: LocalizedStrings
-    public let info: LocalizedStrings
-    public let web: LocalizedStrings
+    public let name: LocalizedStringList
+    public let info: LocalizedStringList
+    public let web: LocalizedStringList
     public let beta: Bool
-    
+
     public var id: String {
         return _id
     }
-    
-    public init(_id: ID, name: LocalizedStrings, info: LocalizedStrings, web: LocalizedStrings, beta: Bool) {
+
+    public init(
+        _id: ID, name: LocalizedStringList, info: LocalizedStringList, web: LocalizedStringList,
+        beta: Bool
+    ) {
         self._id = _id
         self.name = name
         self.info = info
@@ -31,7 +34,8 @@ public struct Allergy: Codable, Hashable, Sendable, Identifiable {
 
     public func maxProba(ingredients: [Ingredient?]) -> AllergyProba {
         ingredients.map { ingredient in
-            ingredient?.allergies.first{ $0.allergy == _id } ?? Allergy.AllergyProba(allergy: self._id, proba: .none)
+            ingredient?.allergies.first { $0.allergy == _id }
+                ?? Allergy.AllergyProba(allergy: self._id, proba: .none)
         }.sorted { lhs, rhs in
             return lhs.proba > rhs.proba
         }.first ?? Allergy.AllergyProba(allergy: self._id, proba: .none)
@@ -48,7 +52,7 @@ public struct Allergy: Codable, Hashable, Sendable, Identifiable {
                 return false
             }
         }
-        
+
         public init(allergy: Allergy, active: Bool? = nil) {
             self.allergy = allergy
             self.active = active
@@ -61,7 +65,7 @@ public struct Allergy: Codable, Hashable, Sendable, Identifiable {
         public var id: Allergy.ID {
             return allergy
         }
-        
+
         public init(allergy: Allergy.ID, proba: Proba) {
             self.allergy = allergy
             self.proba = proba
