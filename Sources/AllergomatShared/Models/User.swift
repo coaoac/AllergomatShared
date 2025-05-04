@@ -100,6 +100,7 @@ public struct User: Codable, Sendable {
         public enum ProductID: String, Codable, Sendable {
             case monthly = "app.allergomat.plus.monthly"
             case yearly = "app.allergomat.plus.yearly"
+            case forlife = "app.allergomat.forlife"
         }
 
         public init(
