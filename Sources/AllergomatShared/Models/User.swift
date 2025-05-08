@@ -30,7 +30,8 @@ public struct User: Codable, Sendable {
     public init(
         _id: ID, name: String?, email: String?, realUserStatus: Int, role: Role,
         experience: Int, appleID: ID?, allergies: [Allergy.ID], products: [Product.ID],
-        ingredients: [Ingredient.ID], country: CountryCode, language: Language, doNotContact: Bool, joined: Date
+        ingredients: [Ingredient.ID], country: CountryCode, language: Language, doNotContact: Bool,
+        joined: Date
     ) {
         self._id = _id
         self.name = name
@@ -97,7 +98,7 @@ public struct User: Codable, Sendable {
         public let date: Date
         public let expiry: Date
 
-        public enum ProductID: String, Codable, Sendable {
+        public enum ProductID: String, Codable, Sendable, CaseIterable {
             case monthly = "app.allergomat.plus.monthly"
             case yearly = "app.allergomat.plus.yearly"
             case forlife = "app.allergomat.forlife"
@@ -217,7 +218,8 @@ public struct User: Codable, Sendable {
         public init(
             _id: ID, name: String?, email: String?, realUserStatus: Int, role: User.Role,
             experience: Int, payments: [User.Payment], allergies: [Allergy.ID],
-            products: [Product.ID], ingredients: [Ingredient.ID], country: CountryCode, language: Language, doNotContact: Bool,
+            products: [Product.ID], ingredients: [Ingredient.ID], country: CountryCode,
+            language: Language, doNotContact: Bool,
             token: Token.ID
         ) {
             self._id = _id
