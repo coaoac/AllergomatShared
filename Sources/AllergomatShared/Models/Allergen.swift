@@ -15,18 +15,23 @@ public struct Allergen: Codable, Hashable, Sendable, Identifiable {
     public let _id: ID  // code
     public var name: LocalizedStringList
     public var allergies: [Allergy.AllergyProba]
-    public var updated: Date
     public var id: String {
         return _id
     }
+    public var updated: Date
+    public var source: Source
+    public var approved: Date?
 
     public init(
-        _id: ID, name: LocalizedStringList, allergies: [Allergy.AllergyProba], updated: Date
+        _id: ID, name: LocalizedStringList, allergies: [Allergy.AllergyProba], source: Source,
+        updated: Date, approved: Date? = nil
     ) {
         self._id = _id
         self.name = name
         self.allergies = allergies
         self.updated = updated
+        self.source = source
+        self.approved = approved
     }
 
     public struct List: Codable, Sendable {
@@ -65,6 +70,11 @@ public struct Allergen: Codable, Hashable, Sendable, Identifiable {
             }
         }
         return false
+    }
+
+    public enum Source: String, Codable, Sendable {
+        case ai
+        case manual
     }
 }
 

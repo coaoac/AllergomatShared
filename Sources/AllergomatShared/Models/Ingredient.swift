@@ -21,7 +21,8 @@ public struct Ingredient: Codable, Hashable, Sendable, Identifiable {
     }
 
     public init(
-        _id: ID, allergies: [Allergy.AllergyProba], language: Language, updated: Date) {
+        _id: ID, allergies: [Allergy.AllergyProba], language: Language, updated: Date
+    ) {
         self._id = _id
         self.allergies = allergies
         self.language = language
